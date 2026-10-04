@@ -1,0 +1,838 @@
+/* Readable English narrative first, with a compact thumb-friendly control layer. */
+:root {
+  --muted: #afabaa;
+  font-size: 16px;
+}
+.story-text {
+  font-family: "Manrope", sans-serif;
+  font-size: 18px;
+  line-height: 1.85;
+  letter-spacing: 0.005em;
+  white-space: pre-line;
+  color: #e0dfd4;
+}
+.quest-card-body > p,
+.full-chronicle p,
+.item-card > p,
+.journal-panel > p,
+.service-card p,
+.setting-row span,
+.inline-note,
+.enemy-description,
+.map-hint {
+  font-size: 15px;
+  line-height: 1.8;
+}
+.event-choice strong {
+  font-size: 16px;
+  line-height: 1.6;
+}
+.event-choice span:not(.choice-number) {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #b4b0af;
+}
+.event-choice {
+  min-height: 82px;
+  padding: 18px 16px;
+}
+.eyebrow,
+.tiny,
+.badge,
+.panel-title,
+.nav-label,
+.chronicle-day {
+  font-size: 12px !important;
+  line-height: 1.6;
+}
+.button,
+.text-button,
+.tabs button,
+.segmented button,
+.item-stats,
+.quest-goal,
+.quest-location,
+.quest-rewards {
+  font-size: 14px;
+}
+.button {
+  min-height: 46px;
+  line-height: 1.6;
+}
+.tabs {
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.tabs button {
+  min-height: 44px;
+}
+.bar-label,
+.bar-value {
+  font-size: 12px;
+}
+.quest-card-body h3,
+.item-card h3 {
+  font-size: 21px;
+  line-height: 1.5;
+}
+.quest-card-meta {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.quest-card-bottom {
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.quest-location {
+  display: block;
+  color: var(--gold);
+  margin: 12px 0;
+}
+.quest-summary {
+  font-size: 15px;
+  color: var(--muted);
+  margin: 16px 0 24px;
+}
+.future-toggle {
+  margin: 24px 0;
+  min-height: 48px;
+}
+.quest-card.locked {
+  opacity: 0.65;
+}
+.equipment-art {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  border: 1px solid #383534;
+  border-radius: 6px;
+  background-color: #121411;
+}
+.item-emblem {
+  width: 112px;
+  height: 112px;
+  padding: 0;
+  background: none;
+  border: 0;
+}
+.item-emblem .equipment-art {
+  width: 112px;
+  height: 112px;
+}
+.item-top {
+  min-height: 112px;
+  align-items: flex-start;
+}
+.equipped-slot .equipment-art {
+  width: 80px;
+  height: 80px;
+}
+.item-reward {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+}
+.item-reward .equipment-art {
+  width: 42px;
+  height: 42px;
+}
+.loot-art {
+  width: 180px;
+  height: 180px;
+  margin: 8px auto 24px;
+}
+.decision-art {
+  width: 100%;
+  height: 170px;
+  margin: 22px 0;
+  border-radius: 5px;
+}
+.outcome-rewards {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 20px 0;
+  color: var(--gold);
+  font-size: 15px;
+}
+.bulk-supplies {
+  margin: 0 0 28px auto;
+  display: flex;
+}
+.map-canvas {
+  max-height: 490px;
+  height: auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+.map-board {
+  position: relative;
+  width: 100%;
+}
+.map-grid {
+  height: 100%;
+  grid-auto-rows: 70px;
+}
+.map-connections {
+  height: 100%;
+}
+.map-node.puzzle {
+  border-color: #708b93;
+  color: #99b7c0;
+}
+.map-node.hazard {
+  border-color: #9a6b54;
+  color: #c99a78;
+}
+.map-connections .shortcut-line {
+  stroke: #88b7c6;
+  stroke-width: 2;
+  stroke-dasharray: 6 5;
+}
+.guide-banner {
+  display: flex;
+  position: relative;
+  gap: 16px;
+  align-items: center;
+  border: 1px solid #5e583c;
+  background: linear-gradient(100deg, #262423, #1e1c1c);
+  padding: 18px 40px 18px 18px;
+  margin-bottom: 24px;
+  border-radius: 6px;
+}
+.guide-banner > svg {
+  color: var(--gold);
+}
+.guide-banner strong {
+  display: block;
+  font-family: "Cinzel", serif;
+  color: #ede6d3;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.guide-banner p {
+  font-size: 14px;
+  line-height: 1.8;
+  margin-top: 7px;
+  max-width: 760px;
+}
+.guide-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.battle-effects {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  overflow: hidden;
+  animation: impact-glow 0.65s both;
+}
+.damage-number {
+  position: absolute;
+  top: 34%;
+  left: 50%;
+  font:
+    600 34px "Cinzel",
+    serif;
+  color: #f4d6a8;
+  text-shadow: 0 2px 12px #000;
+  white-space: nowrap;
+  animation: damage-rise 1.3s both;
+}
+.critical .damage-number {
+  font-size: 32px;
+  color: #ffe5a6;
+}
+.heal-number {
+  position: absolute;
+  top: 60%;
+  left: 45%;
+  font-size: 26px;
+  color: #c4c1c0;
+  animation: damage-rise 1.4s both;
+}
+.incoming-number {
+  position: absolute;
+  bottom: 12%;
+  right: 15%;
+  font-size: 25px;
+  color: #ffc1b5;
+  animation: incoming-rise 1.2s 0.3s both;
+}
+.blade-flash {
+  position: absolute;
+  left: 15%;
+  top: 48%;
+  width: 75%;
+  height: 3px;
+  background: #fff0cc;
+  box-shadow: 0 0 18px 5px #bd985b;
+  transform: rotate(-35deg);
+  animation: slash 0.45s both;
+}
+.ward-flash {
+  position: absolute;
+  inset: 15%;
+  border: 3px solid #96c2ca;
+  border-radius: 50%;
+  box-shadow: 0 0 40px #6190a080;
+  animation: ward-bloom 0.7s both;
+}
+.battle-effects.guard,
+.battle-effects.focus,
+.battle-effects.potion {
+  animation: none;
+}
+.combat-log {
+  font-size: 14px;
+  line-height: 1.7;
+}
+.combat-action strong {
+  font-size: 14px;
+}
+.combat-action span {
+  font-size: 12px;
+}
+.learned-skills .skill-action {
+  font-size: 14px;
+  min-height: 44px;
+}
+.intent strong {
+  font-size: 16px;
+}
+.intent > span {
+  font-size: 13px;
+}
+.cinematic {
+  overflow-y: auto;
+}
+.cinematic-background.art {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: story-reveal 8s ease-out both;
+}
+.cinematic-copy {
+  max-width: 680px;
+  padding: 0 24px;
+  margin: auto;
+  text-align: center;
+}
+.cinematic-copy p {
+  font-family: "Manrope", sans-serif;
+  font-size: 19px;
+  line-height: 1.9;
+  max-width: 620px;
+  color: #eeeadd;
+}
+.cinematic-copy h1 {
+  font-size: clamp(28px, 5vw, 48px);
+  line-height: 1.45;
+}
+.cinematic-shade {
+  background: linear-gradient(180deg, #090d1070, #080b0cc2 45%, #090e0bea 90%);
+}
+.cinematic-controls {
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.cinematic-page {
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 14px !important;
+  width: auto !important;
+  height: auto !important;
+  background: none !important;
+  color: var(--gold);
+  margin-right: 12px;
+}
+.splash {
+  background: radial-gradient(
+    ellipse at 50% 35%,
+    #363523 0,
+    #181717 42%,
+    #0e0d0d 80%
+  );
+}
+.splash > img {
+  filter: drop-shadow(0 0 22px #a3844655);
+  animation: lantern-wake 1.2s ease-out both;
+}
+.splash p {
+  font-size: 15px;
+  color: #bfbcbb;
+}
+.splash-progress {
+  width: 140px;
+  height: 2px;
+  margin-top: 22px;
+  background: #353332;
+  overflow: hidden;
+}
+.splash-progress i {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #c5a971;
+  transform-origin: left;
+  animation: kindling 1.3s ease-out both;
+}
+@keyframes lantern-wake {
+  from {
+    opacity: 0;
+    filter: brightness(0.2);
+  }
+  to {
+    opacity: 1;
+    filter: brightness(1) drop-shadow(0 0 22px #a3844655);
+  }
+}
+@keyframes kindling {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes story-reveal {
+  from {
+    filter: brightness(0.65);
+  }
+  to {
+    filter: brightness(1);
+  }
+}
+@keyframes slash {
+  0% {
+    opacity: 0;
+    transform: rotate(-35deg) scaleX(0);
+  }
+  30% {
+    opacity: 1;
+    transform: rotate(-35deg) scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(-35deg) scaleX(1.2);
+  }
+}
+@keyframes damage-rise {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20px) scale(0.7);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1.15);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -55px) scale(1);
+  }
+}
+@keyframes incoming-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  20%,
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-35px);
+  }
+}
+@keyframes ward-bloom {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+@keyframes impact-glow {
+  0%,
+  100% {
+    background: transparent;
+  }
+  20% {
+    background: #ffe2aa22;
+  }
+  35% {
+    background: #a1453322;
+  }
+}
+.large-text .story-text {
+  font-size: 21px;
+}
+.large-text .quest-card-body > p,
+.large-text .item-card > p {
+  font-size: 18px;
+}
+.large-text .event-choice strong {
+  font-size: 18px;
+}
+@media (max-width: 767px) {
+  .main-content {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .section-heading h2 {
+    font-size: 24px;
+    line-height: 1.5;
+  }
+  .story-text {
+    font-size: 18px;
+    line-height: 1.85;
+  }
+  .event-body {
+    padding: 25px 20px;
+  }
+  .quest-card {
+    padding: 20px 16px;
+  }
+  .quest-emblem {
+    display: none;
+  }
+  .quest-card-bottom > .button {
+    width: 100%;
+  }
+  .quest-goal {
+    align-items: flex-start;
+    line-height: 1.8;
+  }
+  .quest-rewards {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .quest-list {
+    gap: 20px;
+  }
+  .inventory-grid {
+    grid-template-columns: 1fr;
+  }
+  .item-card {
+    padding: 22px;
+  }
+  .equipped-slots {
+    grid-template-columns: 1fr;
+  }
+  .equipped-slot {
+    padding: 15px;
+  }
+  .supply-row {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .supply-row > .button {
+    margin-left: auto;
+  }
+  .guide-banner {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 18px 36px 18px 16px;
+    gap: 12px;
+  }
+  .guide-banner > svg {
+    display: none;
+  }
+  .guide-banner p {
+    font-size: 14px;
+  }
+  .guide-banner .button {
+    width: 100%;
+  }
+  .combat-action {
+    padding: 8px 5px;
+    gap: 6px;
+    min-height: 57px;
+  }
+  .combat-action strong {
+    font-size: 13px;
+  }
+  .combat-action span {
+    font-size: 11px;
+    line-height: 1.6;
+  }
+  .combat-actions {
+    gap: 5px;
+    padding: 9px;
+  }
+  .mobile-nav button span {
+    font-size: 12px;
+  }
+  .mobile-nav {
+    height: calc(69px + var(--av-safe-bottom, 0px));
+  }
+  .cinematic {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100dvh;
+  }
+  .cinematic-copy {
+    margin: 90px auto 25px;
+    padding: 0 25px;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+  }
+  .cinematic-copy p {
+    font-size: 18px;
+    line-height: 1.85;
+  }
+  .cinematic-controls {
+    right: auto;
+    width: 100%;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    padding: 20px 24px calc(30px + var(--av-safe-bottom, 0px));
+    margin: auto 0 0;
+    justify-content: space-between;
+  }
+  .cinematic-controls > div {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    gap: 7px;
+  }
+  .cinematic-controls > .button {
+    flex: 1;
+  }
+  .skip-intro {
+    font-size: 13px;
+  }
+  .tutorial-controls {
+    gap: 8px;
+  }
+  .tutorial-controls .button {
+    font-size: 13px;
+    padding: 12px;
+  }
+  .setting-row span {
+    font-size: 14px;
+  }
+  .modal .story-text {
+    font-size: 17px;
+  }
+  .map-canvas {
+    max-height: 350px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .battle-effects,
+  .battle-effects *,
+  .cinematic-background,
+  .splash * {
+    animation: none !important;
+  }
+}
+.reduce-motion .battle-effects,
+.reduce-motion .battle-effects * {
+  animation: none !important;
+}
+.reduce-motion .damage-number,
+.reduce-motion .incoming-number,
+.reduce-motion .heal-number {
+  display: none;
+}
+.topbar-label > span,
+.topbar strong,
+.save-status,
+.status-strip .bar-head,
+.status-strip .bar-head strong,
+.status-strip .bar-head span {
+  font-size: 12px !important;
+}
+.skill-card p,
+.lore-card p,
+.attribute-row span,
+.character-details .bar-head,
+.character-portrait > div > span,
+.full-chronicle p {
+  font-size: 15px;
+  line-height: 1.8;
+}
+.skill-card h3,
+.equipped-slot h3 {
+  font-size: 18px;
+  line-height: 1.6;
+}
+.skill-meta,
+.skill-cost,
+.skill-card .button,
+.combat-stats span,
+.item-stats span,
+.map-cell > span,
+.map-panel > .panel-title .badge,
+.tutorial-tip,
+.name-label,
+.origin-option > span {
+  font-size: 12px !important;
+  line-height: 1.7;
+}
+.menu-links button,
+.menu-save,
+.menu-version {
+  font-size: 13px;
+  line-height: 1.8;
+}
+.service-card h3 {
+  font-size: 18px;
+  line-height: 1.6;
+}
+.service-card span,
+.region-bottom span {
+  font-size: 14px;
+  line-height: 1.7;
+}
+.name-input {
+  font-size: 18px;
+  min-height: 50px;
+}
+.origin-option h3 {
+  font-size: 17px;
+  line-height: 1.5;
+}
+.breadcrumb > span:first-child {
+  display: none;
+}
+.bar-top,
+.bar-top > div,
+.bar-top strong,
+.bar-top span {
+  font-size: 12px !important;
+}
+.stat-bar > div > span,
+.stat-bar > div > strong,
+.stat-bar > div > strong > small {
+  font-size: 12px !important;
+}
+.status-strip .stat-bar > div {
+  gap: 3px;
+  flex-wrap: wrap;
+}
+.status-strip .stat-bar > div > span svg {
+  width: 12px;
+  height: 12px;
+}
+.combat-skill-toggle {
+  display: none;
+}
+.future-outline {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 24px;
+}
+.future-outline article {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--line);
+}
+.future-outline h3 {
+  font-size: 16px;
+  line-height: 1.6;
+}
+.future-outline p {
+  font-size: 14px;
+  color: var(--muted);
+}
+@media (max-width: 767px) {
+  .town-services {
+    grid-template-columns: 1fr;
+  }
+  .service-card {
+    min-height: 108px;
+    padding: 18px;
+  }
+  .region-bottom h3 {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .region-bottom span {
+    font-size: 13px;
+  }
+  .topbar-label > span {
+    display: none;
+  }
+  .combat-actions {
+    bottom: calc(69px + env(safe-area-inset-bottom));
+  }
+  .native-app .combat-actions {
+    bottom: calc(69px + var(--app-safe-bottom));
+  }
+  .native-app .cinematic-controls {
+    bottom: auto;
+    padding-bottom: calc(30px + var(--app-safe-bottom));
+  }
+  .native-app .mobile-nav {
+    height: calc(69px + var(--app-safe-bottom));
+  }
+  .combat-body {
+    padding-bottom: 230px;
+  }
+  .app:has(.combat-view) .page-enter > .section-heading {
+    display: none;
+  }
+  .combat-view .enemy-portrait {
+    height: 164px;
+  }
+  .combat-view .enemy-description,
+  .combat-view .player-combat-status,
+  .combat-view .learned-skills {
+    display: none;
+  }
+  .combat-view .enemy-title h2 {
+    font-size: 25px;
+  }
+  .combat-actions .combat-action span {
+    font-size: 12px;
+  }
+  .combat-skill-toggle {
+    display: flex;
+    grid-column: 1/-1;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    background: #282625;
+    border: 1px solid #494645;
+    border-radius: 4px;
+    min-height: 38px;
+    font-size: 13px;
+    padding: 6px;
+  }
+  .combat-skill-toggle span {
+    font-size: 12px;
+    margin-left: auto;
+    color: #b6b2b1;
+  }
+  .intent {
+    margin: 12px 0;
+  }
+  .intent > span {
+    font-size: 12px;
+  }
+}

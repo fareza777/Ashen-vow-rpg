@@ -1,0 +1,398 @@
+/* Mystery, legible receipts, and a battlefield that uses the available height. */
+.journey-session .mode-combat > .dungeon-session-heading {
+  display: none;
+}
+.journey-session:has(.combat-view) .main-content {
+  padding-top: 0;
+}
+.journey-session .encounter-heading {
+  padding: 7px 10px;
+  min-height: 58px;
+  gap: 7px;
+}
+.combat-enemy-heading {
+  flex: 1;
+  min-width: 0;
+}
+.combat-enemy-heading .eyebrow {
+  display: block;
+  font-size: 9px;
+  line-height: 1.3;
+  color: #c2a687;
+}
+.combat-enemy-heading h2 {
+  margin: 4px 0 0;
+  font:
+    500 21px/1.2 "Cinzel",
+    serif;
+  color: #f0ddc4;
+  overflow-wrap: anywhere;
+}
+.journey-session .battle-log-toggle {
+  min-height: 44px;
+  padding: 5px 7px;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.journey-session .combat-view .enemy-portrait {
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  overflow: hidden;
+  background: radial-gradient(ellipse, #342026, #171318 75%);
+}
+.journey-session .enemy-visual {
+  padding: 0;
+}
+.journey-session .enemy-visual > .art {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 1;
+}
+.journey-session .enemy-shade {
+  background: linear-gradient(0deg, #20191c44, transparent 18%);
+}
+.journey-session .combat-body {
+  padding: 6px 10px 8px;
+}
+.journey-session .battle-live-log {
+  height: 94px;
+  margin: 6px 0;
+  padding: 6px 8px;
+}
+.journey-session .battle-live-log > div {
+  height: 65px;
+}
+.journey-session .battle-live-log p {
+  font-size: 13px;
+  line-height: 1.35;
+}
+.journey-session .battle-live-log .log-line {
+  display: none;
+}
+.journey-session .battle-live-log .battle-recap {
+  display: block;
+}
+.journey-session .combat-actions {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin-top: 6px;
+  grid-template-rows: 44px 54px 54px;
+  gap: 6px;
+}
+.journey-session .combat-action {
+  height: 54px;
+  min-height: 54px;
+  padding: 6px 3px;
+}
+.journey-session .combat-skill-toggle {
+  height: 44px;
+  min-height: 44px;
+  padding: 6px 8px;
+}
+.journey-session .combat-action strong {
+  font-size: 13px;
+}
+.journey-session .combat-action span {
+  font-size: 11px;
+}
+.journey-session .combat-view.health-critical {
+  border-color: #bb6660;
+  box-shadow: inset 0 0 28px #992b352b;
+}
+.enemy-info-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 18px 0;
+  color: #dfbe90;
+}
+.enemy-info-stats span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+}
+.reward-currency {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 17px 0;
+  color: #ebc68e;
+}
+.reward-currency > span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+}
+.reward-currency .gold-value {
+  font-size: inherit;
+}
+.reward-receipt {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+.reward-belonging {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid #78583d;
+  border-radius: 5px;
+  background: #2b2124;
+  color: #d9b785;
+}
+.reward-belonging > .art {
+  width: 64px;
+  height: 64px;
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  border-radius: 3px;
+}
+.reward-belonging > svg {
+  flex-shrink: 0;
+}
+.reward-belonging > div:not(.art) {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.reward-belonging strong {
+  font:
+    500 16px/1.35 "Cinzel",
+    serif;
+  color: #eddbbd;
+  overflow-wrap: anywhere;
+}
+.reward-belonging span {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #cbb29f;
+}
+.reward-note {
+  margin: 0;
+  color: #c3ada3;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.outcome-copy .reward-flavor {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #59413b;
+}
+.victory-art > .fallen-still {
+  width: auto;
+  height: 100%;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  filter: saturate(0.55) brightness(0.85);
+}
+.defeat-screen {
+  margin-top: 8px;
+  height: calc(100% - 8px);
+}
+.defeat-art {
+  position: relative;
+  height: clamp(140px, 30dvh, 310px);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.defeat-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 53%;
+}
+.defeat-art .badge {
+  position: absolute;
+  bottom: 13px;
+  left: 16px;
+  color: #f1b5a2;
+  border-color: #916252;
+  background: #27191dd9;
+}
+.defeat-receipt {
+  display: grid;
+  gap: 8px;
+  padding: 14px 0;
+  margin-top: 10px;
+  border-top: 1px solid #664740;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #c9b5a6;
+}
+.defeat-receipt strong {
+  font-size: 19px;
+  color: #efb394;
+}
+.quest-chapter-art {
+  width: 100%;
+  aspect-ratio: 2;
+  height: auto;
+  margin-bottom: 18px;
+  border: 1px solid #71503c;
+  border-radius: 5px;
+}
+.embedded-reader .reader-art {
+  height: auto;
+  aspect-ratio: 2;
+  margin-bottom: 14px;
+  border-radius: 5px;
+}
+.modal .embedded-reader {
+  height: min(65dvh, 610px);
+  margin-top: 0;
+}
+.folio-list.skill-scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  padding: 0 3px 8px 0;
+}
+.skill-scroll .folio-row {
+  flex: 0 0 auto;
+  min-height: 86px;
+  max-height: none;
+}
+.skill-scroll .folio-row strong {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.pack-tile {
+  overflow: hidden;
+}
+.pack-tile .pack-copy {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+.pack-tile .pack-copy .eyebrow {
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.pack-tile .pack-copy > span:last-child {
+  overflow-wrap: anywhere;
+}
+.folio-equipped button > div:last-child {
+  flex: 1;
+  overflow: hidden;
+}
+.item-inspect {
+  align-items: flex-start;
+  gap: 12px;
+}
+.item-inspect > .art {
+  width: 90px;
+  height: 90px;
+}
+.item-inspect > .story-text {
+  min-width: 0;
+  flex: 1;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 21px;
+}
+.item-inspect-actions {
+  flex-wrap: wrap;
+}
+.item-inspect-actions > .button {
+  min-width: 128px;
+  white-space: normal;
+  padding: 10px 8px;
+}
+.modal-heading > div {
+  min-width: 0;
+}
+.modal h2 {
+  overflow-wrap: anywhere;
+}
+@media (max-height: 700px) {
+  .modal:has(.embedded-reader) > h2 {
+    font-size: 24px;
+    margin: 10px 0 14px;
+  }
+  .embedded-reader .reader-art {
+    width: min(100%, 240px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .journey-session .encounter-heading {
+    min-height: 50px;
+    padding: 3px 8px;
+  }
+  .combat-enemy-heading h2 {
+    font-size: 18px;
+    margin-top: 3px;
+  }
+  .journey-session .battle-live-log {
+    height: 74px;
+    margin: 4px 0;
+    padding: 4px 8px;
+  }
+  .journey-session .battle-live-log header {
+    margin-bottom: 3px;
+  }
+  .journey-session .battle-live-log > div {
+    height: 48px;
+  }
+  .journey-session .battle-live-log p {
+    font-size: 12px;
+    line-height: 1.3;
+    margin-bottom: 3px;
+  }
+  .journey-session .combat-actions {
+    grid-template-rows: 44px 50px 50px;
+  }
+  .journey-session .combat-action {
+    height: 50px;
+    min-height: 50px;
+  }
+  .journey-session .combat-body {
+    padding: 4px 8px 6px;
+  }
+  .journey-session .combat-body > .stat-bar > div:first-child {
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .skill-scroll .folio-row {
+    min-height: 80px;
+  }
+  .outcome-copy {
+    padding-top: 12px;
+  }
+  .outcome-copy .story-text {
+    line-height: 1.5;
+  }
+  .outcome-art {
+    height: 120px;
+  }
+  .defeat-art {
+    height: 25dvh;
+  }
+  .reward-belonging > .art {
+    width: 52px;
+    height: 52px;
+  }
+}
+@media (max-width: 370px) {
+  .journey-session .battle-log-toggle {
+    font-size: 10px;
+    padding: 5px;
+  }
+  .combat-enemy-heading h2 {
+    font-size: 17px;
+  }
+  .item-inspect > .art {
+    width: 76px;
+    height: 76px;
+  }
+}

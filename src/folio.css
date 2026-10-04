@@ -1,0 +1,996 @@
+/* Portrait menus keep navigation and list controls inside the viewport. */
+.folio-session .workspace {
+  height: calc(100dvh - var(--app-safe-top, 0px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.folio-session .topbar {
+  height: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
+}
+.folio-session .status-strip {
+  padding: 8px 14px;
+  flex-shrink: 0;
+}
+.folio-session .main-content {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 960px;
+  padding: 0 14px 14px;
+  overflow: hidden;
+}
+.folio-session .app-footer {
+  display: none;
+}
+.folio-session .toast {
+  top: calc(52px + var(--app-safe-top, 0px));
+  bottom: auto;
+}
+.folio {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.folio-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  padding: 12px 0 0;
+}
+.folio-heading h1 {
+  margin: 3px 0 0;
+  font:
+    500 26px "Cinzel",
+    serif;
+  color: #ede0ce;
+}
+.folio-heading .eyebrow {
+  font-size: 10px;
+  color: #b89b7d;
+}
+.folio-help {
+  height: 44px;
+  width: 44px;
+  border: 1px solid #57483d;
+  border-radius: 50%;
+  background: #262023;
+  color: #d8b78a;
+  font-size: 20px;
+}
+.folio .tabs {
+  margin: 0;
+  min-height: 44px;
+  flex-shrink: 0;
+}
+.folio .folio-tabs,
+.folio .discipline-tabs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  width: 100%;
+  overflow: visible;
+}
+.folio .tabs button {
+  padding: 10px 4px;
+  font-size: 14px;
+  min-height: 44px;
+}
+.folio-list {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.quest-folio-list {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  padding: 0 3px 0 0;
+}
+.quest-folio-list .folio-row {
+  flex: 0 0 auto;
+  min-height: 66px;
+  max-height: none;
+}
+.quest-folio-list .folio-row strong {
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: anywhere;
+}
+.folio .empty-state { padding:8px; min-height:0; margin:0; display:flex; flex-direction:column; justify-content:center; gap:5px; }
+.folio .empty-state>svg { width:24px; height:24px; flex-shrink:0; }
+.folio .empty-state h3 { margin:0; font-size:17px; }
+.folio .empty-state p { margin:0; font-size:13px; line-height:1.4; }
+.folio-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 66px;
+  max-height: 112px;
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #47383a;
+  border-radius: 5px;
+  background: linear-gradient(115deg, #2b2326, #211c20);
+  text-align: left;
+  color: #caa57a;
+  width: 100%;
+}
+.folio-row.selected {
+  border-color: #98713f;
+  background: linear-gradient(115deg, #36292a, #272124);
+}
+.folio-row > svg {
+  flex-shrink: 0;
+}
+.folio-row > div {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.folio-row strong {
+  color: #f0e1ce;
+  font-family: "Cinzel", serif;
+  font-size: 17px;
+  line-height: 1.3;
+}
+.folio-row .eyebrow {
+  color: #bc9d87;
+  font-size: 10px;
+  line-height: 1.4;
+}
+.folio-row > div > span:last-child {
+  color: #c6b6ad;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.folio-pager {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 8px;
+  flex-shrink: 0;
+  align-items: center;
+}
+.folio-pager button,
+.folio-bottom button {
+  min-height: 44px;
+  background: #272023;
+  border: 1px solid #55423b;
+  border-radius: 4px;
+  color: #dcc8ab;
+  font-size: 14px;
+}
+.folio-pager span {
+  text-align: center;
+  color: #b7a49c;
+  font-size: 14px;
+}
+.folio-pager button:disabled {
+  opacity: 0.35;
+}
+.folio-bottom {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.folio-bottom button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 12px;
+}
+.tracked-vow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: linear-gradient(110deg, #382b28, #272023);
+  border: 1px solid #77553e;
+  border-radius: 5px;
+  color: #d5af79;
+  text-align: left;
+  flex-shrink: 0;
+}
+.quest-filters {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.quest-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #bca088;
+  font-size: 10px;
+}
+.quest-filters select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 6px;
+  border: 1px solid #79563e;
+  border-radius: 4px;
+  background: #2d2426;
+  color: #ecd4b1;
+  font-size: 13px;
+}
+.tracked-vow > div {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tracked-vow strong {
+  font:
+    500 17px "Cinzel",
+    serif;
+  color: #f0e1ce;
+}
+.tracked-vow > div > span:last-child {
+  font-size: 13px;
+  line-height: 1.4;
+  color: #cdb7a8;
+}
+.tracked-vow .eyebrow {
+  font-size: 10px;
+}
+.folio-objective {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  background: #2b2326;
+  margin-bottom: 16px;
+  color: #dac5ad;
+}
+.folio-objective span {
+  font-size: 14px;
+  color: #bca79c;
+}
+.outline-entry {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px 0;
+  border-bottom: 1px solid #463535;
+}
+.outline-entry strong {
+  flex: 1;
+  color: #e4ceb2;
+  font:
+    16px "Cinzel",
+    serif;
+}
+.outline-entry span {
+  font-size: 13px;
+  color: #b8a196;
+}
+.folio-character {
+  display: flex;
+  gap: 14px;
+  padding: 12px;
+  border: 1px solid #574038;
+  border-radius: 5px;
+  background: #292125;
+  flex-shrink: 0;
+}
+.folio-character > .art {
+  width: 82px;
+  height: 82px;
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  border-radius: 3px;
+}
+.folio-character > div:last-child {
+  flex: 1;
+  min-width: 0;
+}
+.folio-character h2 {
+  margin: 4px 0 9px;
+  font:
+    500 23px "Cinzel",
+    serif;
+  color: #f0e1ce;
+}
+.folio-character .stat-bar {
+  margin: 0;
+}
+.folio-character .bar-track {
+  height: 5px;
+}
+.folio-xp {
+  display: none;
+}
+.folio-character .stat-bar > div:first-child {
+  line-height: 1.2;
+}
+.folio-character .eyebrow {
+  font-size: 10px;
+}
+.folio-character .stat-bar > div:first-child {
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+.folio-character .stat-bar strong {
+  font-size: 12px;
+}
+.folio-stats {
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+  padding: 12px;
+  border-bottom: 1px solid #493936;
+}
+.folio-stats span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #baa796;
+}
+.folio-stats b {
+  font-size: 18px;
+  color: #edddc5;
+}
+.folio-attribute {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 12px;
+  border: 1px solid #47383a;
+  background: #292125;
+  border-radius: 5px;
+  color: #d7b58b;
+}
+.folio-attribute > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.folio-attribute strong {
+  font:
+    18px "Cinzel",
+    serif;
+  color: #eadbc8;
+}
+.folio-attribute span {
+  font-size: 13px;
+  color: #c2afa4;
+  line-height: 1.4;
+}
+.folio-attribute > b {
+  font-size: 22px;
+}
+.folio-attribute button {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  color: #e3c396;
+  border: 1px solid #8b6845;
+  border-radius: 4px;
+  background: #44302c;
+}
+.folio-attribute button:disabled {
+  opacity: 0.3;
+}
+.folio-note {
+  color: #bca89c;
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 8px 2px;
+}
+.record-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.record-grid span {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px 10px;
+  border: 1px solid #4c3a36;
+  background: #2a2225;
+  text-align: center;
+  color: #c6b0a2;
+  font-size: 14px;
+}
+.record-grid b {
+  color: #dec39a;
+  font:
+    30px "Cinzel",
+    serif;
+}
+.folio-equipped {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  flex-shrink: 0;
+}
+.folio-equipped button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 64px;
+  padding: 7px;
+  background: #292125;
+  border: 1px solid #70533b;
+  border-radius: 4px;
+  color: #b79a77;
+  text-align: left;
+  min-width: 0;
+}
+.folio-equipped .art {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  aspect-ratio: 1;
+}
+.folio-equipped button > div:last-child {
+  min-width: 0;
+}
+.folio-equipped .eyebrow {
+  font-size: 9px;
+}
+.folio-equipped strong {
+  display: block;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #e1cdb3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.folio-supply {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #2b2326;
+  border: 1px solid #4a3837;
+  border-radius: 4px;
+  color: #d4af80;
+  flex-shrink: 0;
+}
+.folio-supply > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.folio-supply strong {
+  color: #eddbc2;
+  font-size: 15px;
+}
+.folio-supply span {
+  color: #c3ab9d;
+  font-size: 13px;
+}
+.folio-supply button {
+  min-width: 68px;
+  min-height: 44px;
+  background: #45302c;
+  border: 1px solid #8b6848;
+  border-radius: 4px;
+  color: #efcfa1;
+}
+.folio-supply button:disabled {
+  opacity: 0.4;
+}
+.folio-pack {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(min-content, 1fr);
+  gap: 4px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  padding: 0 3px 0 0;
+}
+.pack-tile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 93px;
+  max-height: none;
+  padding: 8px;
+  background: linear-gradient(120deg, #2d2427, #211c20);
+  border: 1px solid #544037;
+  border-radius: 5px;
+  text-align: left;
+  min-width: 0;
+}
+.pack-tile .art {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  aspect-ratio: 1;
+  border-radius: 3px;
+}
+.pack-tile > div:last-child {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.pack-tile strong {
+  font:
+    500 14px "Cinzel",
+    serif;
+  color: #e9d8bd;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  display: block;
+  white-space: normal;
+}
+.pack-tile .eyebrow {
+  color: #b9956b;
+  font-size: 9px;
+}
+.pack-tile span:last-child {
+  color: #c7b0a0;
+  font-size: 12px;
+}
+.item-inspect {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.item-inspect > .art {
+  width: 112px;
+  height: 112px;
+  aspect-ratio: 1;
+  flex-shrink: 0;
+}
+.item-inspect .story-text {
+  font-size: 22px;
+}
+.item-compare {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px;
+  background: #2b2326;
+  border: 1px solid #503c36;
+  margin: 16px 0;
+}
+.item-compare strong {
+  flex-basis: 100%;
+  color: #d8bca1;
+  font-size: 14px;
+}
+.item-compare span {
+  font-size: 14px;
+}
+.item-compare .better {
+  color: #d8c092;
+}
+.item-compare .worse {
+  color: #ef9696;
+}
+.item-inspect-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+.item-inspect-actions > .button {
+  flex: 1;
+}
+/* Square enemy atlas tiles are contained in the available portrait area. */
+.journey-session .enemy-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 4px 50px;
+}
+.journey-session .enemy-visual > .art {
+  position: static;
+  inset: auto;
+  transform: none;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 1;
+  flex-shrink: 1;
+}
+.journey-session .enemy-shade {
+  pointer-events: none;
+  background: linear-gradient(0deg, #21191df5, transparent 24%);
+}
+.journey-session .enemy-title {
+  left: 12px;
+  bottom: 9px;
+}
+.journey-session .enemy-title .eyebrow {
+  font-size: 9px;
+}
+.journey-session .enemy-title h2 {
+  font-size: 21px;
+  margin: 3px 0 0;
+}
+.battle-live-log {
+  padding: 8px 10px;
+  height: 126px;
+  border: 1px solid #594039;
+  border-radius: 4px;
+  background: linear-gradient(110deg, #2b2225, #221c20);
+  margin: 8px 0;
+}
+.battle-live-log header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.battle-live-log header > span:last-child {
+  font-size: 10px;
+  color: #a99488;
+}
+.battle-live-log .eyebrow {
+  font-size: 10px;
+  color: #ccac82;
+}
+.battle-live-log > div {
+  height: 92px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+.battle-live-log p {
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 0 0 6px;
+  color: #bba79e;
+}
+.battle-live-log p.latest {
+  color: #e3c797;
+}
+.battle-recap {
+  display: none;
+}
+@media (max-width: 760px) {
+  .folio-session .main-content {
+    padding: 0 10px calc(76px + var(--app-safe-bottom, 0px));
+  }
+  .folio-session .status-strip .currency,
+  .folio-session .status-strip .level-status {
+    display: none;
+  }
+  .folio-session .status-strip {
+    gap: 10px;
+  }
+  .folio-session .status-strip .stat-bar > div:first-child > span {
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  .folio-session .status-strip .stat-bar > div:first-child {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 3px;
+  }
+  .folio-session .status-strip .stat-bar strong small {
+    font-size: 10px;
+  }
+  .folio-session .status-strip strong {
+    font-size: 11px;
+  }
+  .folio {
+    gap: 8px;
+  }
+  .folio-heading {
+    padding-top: 6px;
+  }
+  .folio-heading h1 {
+    font-size: 23px;
+  }
+  .folio-row {
+    padding: 10px;
+    gap: 9px;
+  }
+  .folio-row strong {
+    font-size: 16px;
+  }
+  .folio .folio-tabs button {
+    font-size: 12px;
+  }
+}
+@media (max-height: 700px) {
+  .record-folio .story-text { margin:6px 0; font-size:21px; }
+  .record-grid span { padding:12px 8px; gap:6px; }
+  .record-grid b { font-size:24px; }
+  .folio {
+    gap: 6px;
+  }
+  .folio-heading .eyebrow {
+    font-size: 9px;
+  }
+  .folio-heading h1 {
+    font-size: 20px;
+  }
+  .folio-character {
+    padding: 6px 8px;
+    gap: 10px;
+  }
+  .folio-character > .art {
+    width: 48px;
+    height: 48px;
+  }
+  .folio-character h2 {
+    font-size: 19px;
+    margin: 2px 0 5px;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .folio-xp {
+    display: inline;
+    font:
+      10px "Manrope",
+      sans-serif;
+    color: #c6b2a1;
+  }
+  .folio-character .stat-bar > div:first-child {
+    display: none;
+  }
+  .folio-character .eyebrow {
+    display: block;
+    line-height: 1.2;
+  }
+  .folio-attribute {
+    padding: 8px;
+    gap: 9px;
+  }
+  .folio-stats {
+    padding: 8px;
+  }
+  .folio-note {
+    font-size: 12px;
+    margin: 4px 0;
+  }
+  .folio-equipped button {
+    min-height: 50px;
+    padding: 5px;
+  }
+  .folio-equipped .art {
+    width: 28px;
+    height: 28px;
+  }
+  .folio-equipped strong {
+    font-size: 10px;
+  }
+  .folio-supply {
+    padding: 5px 8px;
+  }
+  .pack-tile {
+    padding: 5px;
+    gap: 5px;
+  }
+  .pack-tile .art {
+    width: 36px;
+    height: 36px;
+  }
+  .pack-tile strong {
+    font-size: 14px;
+  }
+  .tracked-vow {
+    padding: 8px;
+  }
+  .tracked-vow strong {
+    font-size: 14px;
+  }
+  .tracked-vow > div > span:last-child {
+    display: none;
+  }
+  .battle-live-log {
+    height: 110px;
+    padding: 6px 8px;
+    margin: 6px 0;
+  }
+  .battle-live-log > div {
+    height: 82px;
+  }
+  .battle-live-log p {
+    font-size: 12px;
+  }
+  .journey-session .enemy-title h2 {
+    font-size: 18px;
+  }
+  .journey-session .enemy-title .eyebrow {
+    display: none;
+  }
+  .journey-session .enemy-visual {
+    padding-bottom: 30px;
+  }
+}
+@media (max-height: 620px) {
+  .quest-folio-list {
+    gap: 4px;
+  }
+  .quest-folio-list .folio-row {
+    padding-block: 5px;
+  }
+  .folio-character {
+    padding: 6px 8px;
+  }
+  .folio-character > .art {
+    width: 48px;
+    height: 48px;
+  }
+  .folio-character h2 {
+    font-size: 17px;
+    margin: 2px 0 3px;
+  }
+  .folio-character .stat-bar > div:first-child {
+    font-size: 9px;
+    margin-bottom: 3px;
+  }
+  .folio-character .stat-bar strong {
+    font-size: 10px;
+  }
+  .attributes-folio .folio-note {
+    display: none;
+  }
+  .record-folio .folio-note {
+    display: none;
+  }
+  .folio-attribute {
+    padding: 6px 8px;
+  }
+  .folio-attribute > div {
+    gap: 3px;
+  }
+  .folio-attribute strong {
+    font-size: 17px;
+  }
+  .folio-attribute span {
+    font-size: 11px;
+  }
+  .folio-stats {
+    padding: 6px;
+  }
+  .folio-row {
+    padding: 6px 10px;
+  }
+  .folio-row > div {
+    gap: 3px;
+  }
+  .folio-row strong {
+    font-size: 14px;
+    line-height: 1.3;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .folio-row .eyebrow {
+    font-size: 9px;
+    line-height: 1.3;
+  }
+  .folio-row > div > span:last-child {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  .record-folio .story-text {
+    margin: 6px 0;
+    font-size: 21px;
+  }
+  .record-grid span {
+    padding: 12px 8px;
+    gap: 6px;
+  }
+  .record-grid b {
+    font-size: 24px;
+  }
+  .folio-row {
+    min-height: 64px;
+  }
+  .attributes-folio {
+    gap: 4px;
+  }
+  .folio-attribute {
+    padding: 5px 8px;
+  }
+  .folio-list:not(.folio-pack) {
+    gap: 6px;
+  }
+}
+@media (max-height: 700px) {
+  .journey-session .combat-actions {
+    padding: 0;
+    border: 0;
+    background: none;
+    gap: 6px;
+    grid-template-rows: 44px 52px 52px;
+  }
+  .journey-session .combat-skill-toggle {
+    height: 44px;
+    min-height: 44px;
+    padding: 6px 8px;
+  }
+  .journey-session .combat-action {
+    height: 52px;
+    min-height: 52px;
+    padding: 6px 3px;
+  }
+  .journey-session .combat-action strong {
+    font-size: 13px;
+  }
+  .journey-session .combat-action span {
+    font-size: 11px;
+  }
+  .journey-session .encounter-heading {
+    padding: 2px 8px;
+  }
+  .journey-session .combat-body > .stat-bar > div:first-child {
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .journey-session .combat-body > .stat-bar strong,
+  .journey-session .combat-body > .stat-bar span {
+    font-size: 11px;
+    line-height: 1.2;
+  }
+  .journey-session .combat-body .bar-track {
+    height: 5px;
+  }
+  .journey-session .combat-view .enemy-portrait {
+    min-height: 100px;
+  }
+  .battle-live-log {
+    height: 84px;
+    padding: 4px 8px;
+  }
+  .battle-live-log header {
+    margin-bottom: 3px;
+    line-height: 1.2;
+  }
+  .battle-live-log > div {
+    height: 56px;
+  }
+  .battle-live-log p {
+    font-size: 12px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .battle-live-log .log-line {
+    display: none;
+  }
+  .battle-live-log .battle-recap {
+    display: block;
+  }
+  .journey-session .dungeon-session-heading {
+    min-height: 46px;
+    height: 46px;
+    padding: 3px 0;
+  }
+  .journey-session .dungeon-session-heading .icon-button {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+  }
+  .journey-session .dungeon-session-heading h1 {
+    font-size: 18px;
+    line-height: 1.25;
+    margin: 2px 0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .folio-row,
+  .pack-tile {
+    transition: none;
+  }
+}

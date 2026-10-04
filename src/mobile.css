@@ -1,0 +1,101 @@
+/* Keep action controls inside a comfortable thumb reach during portrait combat. */
+.native-app {
+  --app-safe-top: max(
+    env(safe-area-inset-top, 0px),
+    var(--safe-area-inset-top, 0px)
+  );
+  --app-safe-bottom: max(
+    env(safe-area-inset-bottom, 0px),
+    var(--safe-area-inset-bottom, 0px)
+  );
+}
+.native-app .app {
+  padding-top: var(--app-safe-top);
+}
+@media (max-width: 767px) {
+  .native-app .mobile-nav {
+    padding-bottom: max(7px, var(--app-safe-bottom));
+  }
+  .native-app .combat-actions {
+    bottom: calc(65px + var(--app-safe-bottom));
+  }
+  .native-app .main-content {
+    padding-bottom: calc(84px + var(--app-safe-bottom));
+  }
+  .native-app .skip-intro {
+    top: calc(20px + var(--app-safe-top));
+  }
+  .native-app .cinematic-controls {
+    bottom: calc(38px + var(--app-safe-bottom));
+  }
+  .native-app .modal-backdrop {
+    padding-top: calc(16px + var(--app-safe-top));
+    padding-bottom: calc(16px + var(--app-safe-bottom));
+  }
+  .native-app .modal {
+    max-height: calc(
+      100dvh - 32px - var(--app-safe-top) - var(--app-safe-bottom)
+    );
+  }
+  .native-app .app:has(.combat-view) .toast {
+    bottom: calc(218px + var(--app-safe-bottom));
+  }
+}
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 767px) {
+  .combat-actions {
+    position: fixed;
+    bottom: calc(65px + env(safe-area-inset-bottom));
+    left: 14px;
+    right: 14px;
+    z-index: 35;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+    padding: 9px;
+    background: #1c1b1afa;
+    border: 1px solid #5a5554;
+    border-radius: 5px;
+    box-shadow: 0 -8px 30px #0b0a0a66;
+  }
+  .combat-action {
+    padding: 11px 7px;
+    min-height: 53px;
+    gap: 7px;
+  }
+  .combat-action strong {
+    font-size: 10px;
+  }
+  .combat-action span {
+    font-size: 7px;
+  }
+  .combat-action svg {
+    width: 19px;
+  }
+  .combat-body {
+    padding-bottom: 169px;
+  }
+  .combat-view .enemy-portrait {
+    height: 236px;
+  }
+  .app:has(.combat-view) .toast {
+    bottom: calc(218px + env(safe-area-inset-bottom));
+  }
+  .service-card p {
+    font-size: 8px;
+  }
+  .service-card span {
+    font-size: 8px;
+  }
+  .region-bottom span {
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ashen_background">#121113</color>
+    <color name="colorPrimary">#121113</color>
+    <color name="colorPrimaryDark">#121113</color>
+    <color name="colorAccent">#C1A36F</color>
+</resources>

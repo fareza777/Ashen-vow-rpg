@@ -1,0 +1,46 @@
+{
+  "tool": "Built-in image_gen",
+  "finalFiles": [
+    "town.png",
+    "cover.png",
+    "icon.png",
+    "dungeons.png",
+    "characters.png",
+    "enemies.png"
+  ],
+  "facePolicy": "All human and humanoid character faces concealed. Revised masked portraits and bestiary are the shipped assets.",
+  "prompts": [
+    {
+      "key": "town",
+      "prompt": "Use case: stylized-concept. Asset type: original dark fantasy RPG town hub background, wide landscape 1536x1024. Create a beautifully detailed oil painted cinematic environment of Vesper's Rest, a rain soaked gothic medieval town built upon a steep ravine. The eye follows cobbled stairs into an enormous ruined cathedral under black mountains. Small crooked stone houses flank streets, warm amber lanterns in windows, distant teal fog, fine branches and autumn foliage. Tiny lone cloaked traveller descending stairs, weathered stone, atmospheric depth. Elegant hand-painted high end fantasy book cover, painterly chiaroscuro, desaturated charcoal slate and muted brown, luminous golden lanterns, not saturated, detailed yet readable. Scene fills edge to edge, no text no interface no logos no watermark. Original world."
+    },
+    {
+      "key": "cover",
+      "prompt": "Use case: stylized-concept. Asset type: original portrait dark fantasy game cinematic title background 1024x1536. A lone slender cloaked female oathkeeper with long windswept dark cloak holding a small golden lantern, back to viewer, standing on a cracked bridge over a black abyss. Ahead impossibly tall gothic cathedral with a broken circular rose window glows dim golden, roots hanging into the abyss. Black ash drifting, slate fog, lonely poignant mood, premium painterly book cover, detailed weathered medieval architecture and exquisite light. Main character in bottom third and impressive cathedral toward top third. Darkness at bottom to allow UI overlay, no text no logos no interface no border no watermarks. Rich oil painted realism in charcoal, deep desaturated teal, tarnished amber."
+    },
+    {
+      "key": "icon",
+      "prompt": "Use case: logo-brand. Asset type: square app icon for original dark fantasy RPG Ashen Vow, 1024 square. A highly polished ornate antique bronze lantern with a small luminous amber flame held within a gothic arched housing; the lantern subtly incorporates a slender sword and cracked halo behind it. Centered clean powerful recognizable silhouette. Dark charcoal black textured background, tiny embers, intricately illustrated tarnished gold metal, dark fantasy oil painting. Full bleed square, no rounded corner clipping, strong silhouette legible as mobile app icon, restrained luxurious fantasy art, no words no letters no watermark no border."
+    },
+    {
+      "key": "dungeons",
+      "prompt": "Use case: stylized-concept. Asset type: a game environment atlas with precisely FOUR equally sized square panels in a clean 2 by 2 grid, 1536x1536, no gaps, no labels. Each individual panel is a different original dark fantasy dungeon environment in exquisite atmospheric matte oil painting. TOP LEFT: The Drowned Catacombs, an arched medieval crypt partially flooded with dark water, old stone coffins, warm candles reflected in water, pale blue fog, forbidding golden doorway in distance. TOP RIGHT: The Thornwild, an eerie twisted forest with thick black tree trunks and pale white glowing moths, hidden ruined stone shrine with amber candlelight and moss. BOTTOM LEFT: The Hollow Spire, inside immense vertical gothic cathedral staircase, pale shaft of light, great suspended iron bells and warm amber fire. BOTTOM RIGHT: ruined gothic altar in dark underground chamber, ancient broken circular rose window, shadows, luminous candlelight. No characters, no text, no frame, no watermark, desaturated charcoal and forest gray, restrained amber lights, detailed dark fantasy book illustration."
+    },
+    {
+      "key": "enemies",
+      "prompt": "Use case: stylized-concept. Asset type: bestiary character atlas for original dark fantasy RPG. Precisely SIX equally sized square panels in clean 3 columns and 2 rows, landscape 1536x1024, NO borders, NO labels, NO text. Each character centrally composed from head to hips within its own panel on a dark smoky charcoal backdrop, same exquisite realistic oil painted fantasy illustration style. TOP LEFT: hollow revenant, a medieval undead soldier, ancient ruined iron helmet, torn gray cloth, dim amber eyes, jagged sword. TOP MIDDLE: thorn stalker, a spindly creature with bark skin and antlers entwined with thorn vines, eerie silver eyes. TOP RIGHT: drowned oracle, ghostly veiled woman in dark layered robes and long ornate mask, pale spectral hands, teal flames. BOTTOM LEFT: ash hound, snarling large skeletal dog covered in charcoal black ash with golden glowing ribs, muscular crouch. BOTTOM MIDDLE: bell warden boss, imposing armored giant wearing cathedral-bell helmet, tarnished golden chains, enormous hammer, imposing centered portrait. BOTTOM RIGHT: moth sovereign boss, elegant frightening humanoid queen with dark moth wings, pale crown of antlers, luminous eyes and black flowing gown. Premium dark fantasy illustrated trading cards, muted charcoal, tarnished bronze and desaturated teal, consistent soft chiaroscuro, NO gore, no typography no watermark."
+    },
+    {
+      "key": "characters",
+      "prompt": "Use case: stylized-concept. Asset type: RPG playable character portrait atlas, original world. Exactly FOUR equally sized square cells in 2 by 2 grid, no borders no gaps no labels, 1536 square. Every portrait centrally composed head and upper torso, neutral dark fog background, premium realistic dark fantasy oil painting, consistent charcoal teal and amber palette. TOP LEFT: young female oathkeeper with windswept dark brown hair, weathered charcoal leather armor with muted bronze details, determined pale gray eyes, holding a small warm amber lantern at chest. TOP RIGHT: male exiled knight with shoulder length silver gray hair, short gray beard, scratched gothic steel armor and brown cloak, melancholic stern expression. BOTTOM LEFT: female veil scholar with pale skin, dark hair, aged ornate hood, muted teal robe with tarnished golden symbols and small glowing magic orb. BOTTOM RIGHT: androgynous wilderness ranger with dark skin, short curly hair, olive green hood cloak and worn leather, arrow quiver, serious watchful eyes. Beautiful believable original characters, somber chiaroscuro lighting, dramatic yet understated, no words no typography no watermark, no reference characters."
+    },
+    {
+      "key": "characters_masked",
+      "prompt": "Edit this four-cell original dark fantasy character portrait atlas. Preserve exact 2x2 layout, framing, painterly style, armor and background. IMPORTANT: conceal every character face completely. No visible full faces. TOP LEFT: give oathkeeper a deep black hood and ornate bronze full-face lantern mask covering forehead cheeks nose mouth chin, only narrow shadowed eye slits. TOP RIGHT: put knight in fully enclosed scratched gothic steel greathelm with narrow black visor, no visible face no beard. BOTTOM LEFT: scholar has deep dark hood and gold-trimmed long opaque black fabric veil over entire face, only tiny shadowed eye openings, no exposed skin. BOTTOM RIGHT: ranger wears dark olive hood and black cloth face covering over nose mouth cheeks chin, upper face submerged in deep hood shadow, only eyes barely visible. Preserve compositions and believable painted textures. Strictly NO uncovered facial features except eyes in deep shadow. No text."
+    },
+    {
+      "key": "enemies_masked",
+      "prompt": "Edit only the bottom-right character of this six cell dark fantasy bestiary atlas: the Moth Sovereign must have her entire face concealed by an ornate dark bronze full-face moth mask with dark eye slits and a black silk veil over her hood. Cover forehead, nose, cheeks, mouth, chin fully. No visible face. Preserve her antler crown, moth wings, armor, pose, painterly style, exact 3x2 grid, and the other five character cells completely unchanged. No text."
+    }
+  ]
+}
