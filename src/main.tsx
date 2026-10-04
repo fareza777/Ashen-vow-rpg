@@ -15,10 +15,12 @@ import "./polish.css";
 import "./journey.css";
 import "./folio.css";
 import "./mystery.css";
+import "./ads.css";
 import App from "./App";
 import { restoreNativeStorage } from "./native";
+import { purchases } from "./purchases";
 
-void restoreNativeStorage()
+void Promise.allSettled([restoreNativeStorage(), purchases.hydrate()])
   .catch(() => {})
   .finally(() => {
     ReactDOM.createRoot(document.getElementById("root")!).render(

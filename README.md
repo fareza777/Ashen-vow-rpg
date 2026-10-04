@@ -93,7 +93,15 @@ The inventory and quest layout repairs remain in the current release. The earlie
 
 Vesper's Rest now plays quiet water drops and long stone echoes. The locally bundled 80.1-second stereo recording has a three-second blended loop seam, gentle filtering, controlled peaks, and a two-second fade-in. No birds, instruments, or synthetic noise bed play in town. Muting, leaving town, and pausing the app retain their existing audio safeguards. See [audio source, CC0 license, and processing notes](docs/AUDIO-026.md).
 
-Download the signed APK from the [v0.2.6 release](https://github.com/fareza777/Ashen-vow-rpg/releases/tag/v0.2.6). Install it over the earlier APK to keep progress. Source, generated game artwork, audio, tests, and Android project are in this repository; built APKs are distributed through Releases. The private signing key stays outside Git.
+The sound and layout repairs remain in the current release. Source, generated game artwork, audio, tests, and Android project are in this repository; built APKs are distributed through Releases. The private signing key stays outside Git.
+
+## Version 0.2.7: optional ads and Remove Ads
+
+Android now includes native AdMob banner, interstitial and rewarded ads using **Google test IDs**. The town banner has its own space; fullscreen ads appear only at a safe expedition break. The tavern offers an optional healing draught after a completed rewarded ad, capped at two per UTC day and six carried supplies. Ads never interrupt combat or gate the offline adventure.
+
+Settings includes **Remove Ads — US$4.99 once**, plus **Restore Purchases**, through Google Play Billing. An owned purchase disables every ad format and allows the same daily tavern supplies without a video, including offline. Pending/cancelled payments do not grant ownership; old saves and new characters remain supported. Store-provided local prices replace the US reference price when available.
+
+Download the signed APK and Google Play upload AAB from the [v0.2.7 release](https://github.com/fareza777/Ashen-vow-rpg/releases/tag/v0.2.7). Install the APK over the previous version to keep your journey. The AAB is for Play Console testing/upload, not direct phone installation. **The `remove_ads` product must be activated at US$4.99 in Play Console before store purchases can work.** [Setup, behavior and verification details](docs/MONETIZATION.md).
 
 ## Inspiration
 

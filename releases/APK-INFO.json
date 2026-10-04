@@ -1,16 +1,16 @@
 {
   "app": "Ashen Vow: The Hollow Below",
   "packageId": "com.ashenvow.game",
-  "version": "0.2.6",
-  "versionCode": 8,
-  "file": "AshenVow-0.2.6.apk",
-  "bytes": 43993224,
-  "sha256": "34ce0cd215a53b7843c4eea994235259bfc911090840e0cc96641bc1c5e6724f",
+  "version": "0.2.7",
+  "versionCode": 9,
+  "file": "AshenVow-0.2.7.apk",
+  "bytes": 48427869,
+  "sha256": "c51a9f20357b2f871302b276e25b656842d7f0d43e7563d48916cc4286cbef2b",
   "minSdk": 24,
   "targetSdk": 36,
   "orientation": "portrait",
   "signature": "APK Signature Scheme v2 verified",
-  "bundledAssetsVerified": 40,
+  "bundledAssetsVerified": 42,
   "remoteServerRequired": false,
   "physicalDeviceTested": false
 }

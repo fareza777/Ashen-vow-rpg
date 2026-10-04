@@ -1,8 +1,8 @@
 # Ashen Vow Android APK
 
-The installable release is `releases/AshenVow-0.2.6.apk`. It uses the same package and signing key as earlier releases, with version code 8, so it can be installed as an update. Keep the existing app installed to retain its local save.
+The installable release is `releases/AshenVow-0.2.7.apk`. It uses the same package and signing key as earlier releases, with version code 9, so it can be installed as an update. Keep the existing app installed to retain its local save.
 
-Download it from the [v0.2.6 GitHub release](https://github.com/fareza777/Ashen-vow-rpg/releases/tag/v0.2.6). APK binaries are distributed through Releases and are excluded from Git.
+Download it from the [v0.2.7 GitHub release](https://github.com/fareza777/Ashen-vow-rpg/releases/tag/v0.2.7). APK/AAB binaries are distributed through Releases and are excluded from Git. The AAB is a signed Google Play upload bundle and cannot be installed directly like an APK.
 
 ## Install on a phone
 
@@ -42,3 +42,11 @@ The script builds the Android web assets separately from the PWA, synchronizes t
 Keep a private backup of **`.android-signing`**, including both the keystore and `release.properties`. These files are ignored by Git and contain the signing credentials. Future APK updates must use the same key and application ID `com.ashenvow.game`; increase `versionCode` in `android/app/build.gradle` for a new release. Do not publish the signing folder or include it with the APK.
 
 The built release is signed for direct installation. Publishing on Google Play is a separate step and has not been performed.
+
+## Ads and one-time purchase
+
+Version 0.2.7 uses Google demo AdMob IDs for town banners, expedition-break interstitials and optional tavern rewarded ads. Core gameplay, art, sound and saves work without an ad connection. Settings offers **Remove Ads — US$4.99 once** and **Restore Purchases** through Google Play Billing. Ownership is separate from character saves and disables all ad formats. Paid players can claim the same limited daily supplies without a video.
+
+The Google Play product **`remove_ads`** must be created and activated with a US$4.99 base price for package `com.ashenvow.game`. Google Play supplies the final regional price. Until configured, the game reports store unavailability and remains playable. [AdMob and Play Console setup](MONETIZATION.md).
+
+Build both APK and the signed AAB for internal Google Play testing with `npm run android:aab`. This does not upload or publish to Google Play.

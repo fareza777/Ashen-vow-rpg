@@ -1,3 +1,5 @@
+param([switch]$WithBundle)
+
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $projectRoot
@@ -36,7 +38,8 @@ if (-not (Test-Path -LiteralPath $signingProperties)) { throw 'Restore release.p
 if ($LASTEXITCODE -ne 0) { throw 'Android asset build failed.' }
 Push-Location -LiteralPath 'android'
 try {
-    & .\gradlew.bat assembleRelease --console=plain
+    if ($WithBundle) { & .\gradlew.bat assembleRelease bundleRelease --console=plain }
+    else { & .\gradlew.bat assembleRelease --console=plain }
     if ($LASTEXITCODE -ne 0) { throw 'Android APK build failed.' }
 } finally { Pop-Location }
 
@@ -55,3 +58,15 @@ finally { $hashStream.Dispose(); $sha256.Dispose() }
 Set-Content -LiteralPath "$apkPath.sha256" -Value "$hash  $(Split-Path -Leaf $apkPath)" -Encoding ascii
 Write-Output "APK ready: $apkPath"
 Write-Output "Size: $([math]::Round((Get-Item -LiteralPath $apkPath).Length / 1MB, 2)) MiB"
+if ($WithBundle) {
+    $bundlePath = Join-Path $releaseDirectory "AshenVow-$($package.version).aab"
+    Copy-Item -LiteralPath 'android/app/build/outputs/bundle/release/app-release.aab' -Destination $bundlePath -Force
+    & jarsigner -verify $bundlePath
+    if ($LASTEXITCODE -ne 0) { throw 'Android bundle signature verification failed.' }
+    $bundleStream = [System.IO.File]::OpenRead($bundlePath)
+    $bundleSha256 = [System.Security.Cryptography.SHA256]::Create()
+    try { $bundleHash = ([BitConverter]::ToString($bundleSha256.ComputeHash($bundleStream))).Replace('-', '').ToLowerInvariant() }
+    finally { $bundleStream.Dispose(); $bundleSha256.Dispose() }
+    Set-Content -LiteralPath "$bundlePath.sha256" -Value "$bundleHash  $(Split-Path -Leaf $bundlePath)" -Encoding ascii
+    Write-Output "Google Play bundle ready: $bundlePath"
+}

@@ -2,6 +2,12 @@ import { soundscape } from "./audio";
 import { INTRO_PAGES } from "./campaign";
 import { Guide } from "./Guide";
 import { useState, useEffect, useRef, useCallback } from "react";
+import type { CSSProperties } from "react";
+import { ads } from "./admob";
+import { useAds, RewardedSupplies } from "./RewardedSupplies";
+import { rewardDate } from "./adRewards";
+import { purchases } from "./purchases";
+import { RemoveAds, usePurchases } from "./RemoveAds";
 import { App as NativeApp } from "@capacitor/app";
 import {
   isNativeApp,
@@ -125,6 +131,13 @@ export default function App() {
   );
   const [dialog, setDialog] = useState<Dialog>(null);
   const [settings, setSettings] = useState(loadSettings);
+  const adState = useAds();
+  const purchaseState = usePurchases();
+  const [foreground, setForeground] = useState(true);
+  const [adOverlay, setAdOverlay] = useState(false);
+  const currentGame = useRef(game);
+  currentGame.current = game;
+  const saveGeneration = useRef(0);
   const [splash, setSplash] = useState(true);
   const [intro, setIntro] = useState(false);
   const [toast, setToast] = useState("");
@@ -166,6 +179,78 @@ export default function App() {
     return () => clearTimeout(t);
   }, []);
   useEffect(() => {
+    const check = () =>
+      setAdOverlay(!!document.querySelector('[role="dialog"]'));
+    const observer = new MutationObserver(check);
+    observer.observe(document.body, { childList: true, subtree: true });
+    check();
+    return () => observer.disconnect();
+  }, []);
+  useEffect(() => {
+    ads.setPlacement({
+      screen,
+      blocked:
+        splash ||
+        intro ||
+        !!dialog ||
+        !!document.querySelector('[role="dialog"]') ||
+        !!game.run ||
+        !!game.defeat,
+      rewardAllowed:
+        screen === "town" &&
+        dialog === "tavern" &&
+        !splash &&
+        !intro &&
+        !game.run &&
+        !game.defeat,
+      active:
+        foreground &&
+        !splash &&
+        purchaseState.checked &&
+        purchaseState.busy !== "purchase",
+    });
+  }, [
+    screen,
+    splash,
+    intro,
+    dialog,
+    adOverlay,
+    foreground,
+    !!game.run,
+    !!game.defeat,
+    purchaseState.checked,
+    purchaseState.busy,
+  ]);
+  useEffect(() => {
+    ads.setOnline(online);
+    purchases.setOnline(online);
+  }, [online]);
+  useEffect(() => {
+    if (!splash) void purchases.refresh();
+  }, [splash, online]);
+  useEffect(() => {
+    if (!splash && purchaseState.checked) void ads.start();
+  }, [splash, purchaseState.checked]);
+  useEffect(() => {
+    soundscape.interrupt(
+      adState.fullscreen || purchaseState.busy === "purchase" || !foreground,
+    );
+  }, [adState.fullscreen, foreground, purchaseState.busy]);
+  useEffect(() => {
+    ads.setMuted(!settings.music && !settings.sfx);
+  }, [settings.music, settings.sfx]);
+  useEffect(() => {
+    if (!isNativeApp) return;
+    const listener = NativeApp.addListener("appStateChange", ({ isActive }) => {
+      ads.setForeground(isActive);
+      setForeground(isActive);
+      if (isActive) void purchases.refresh();
+    });
+    return () => {
+      void listener.then((handle) => handle.remove()).catch(() => {});
+    };
+  }, []);
+  useEffect(() => {
     let current = true;
     void saveLocalValue(SAVE_KEY, JSON.stringify(game))
       .then(() => {
@@ -181,6 +266,7 @@ export default function App() {
     };
   }, [game, inform]);
   const hadExpedition = useRef(!!(game.run || game.defeat));
+  const previousRun = useRef(game.run);
   useEffect(() => {
     if (
       hadExpedition.current &&
@@ -188,10 +274,16 @@ export default function App() {
       !game.defeat &&
       screen === "dungeon"
     ) {
+      if (previousRun.current)
+        ads.queueExpeditionBreak(
+          `return-${game.day}-${game.seed}`,
+          previousRun.current.rooms,
+        );
       setScreen("town");
       window.scrollTo({ top: 0, behavior: "instant" });
     }
     hadExpedition.current = !!(game.run || game.defeat);
+    previousRun.current = game.run;
   }, [game.run, game.defeat, screen]);
   useEffect(() => {
     if ((game.combat?.enemyId || game.run?.eventId) && window.innerWidth < 768)
@@ -211,6 +303,11 @@ export default function App() {
     if (!isNativeApp) return;
     let cancelled = false;
     const listener = NativeApp.addListener("backButton", () => {
+      if (
+        ads.getSnapshot().fullscreen ||
+        purchases.getSnapshot().busy === "purchase"
+      )
+        return;
       const backEvent = new Event("ashen-back", { cancelable: true });
       window.dispatchEvent(backEvent);
       if (backEvent.defaultPrevented) return;
@@ -351,6 +448,7 @@ export default function App() {
       return;
     }
     setGame(loaded);
+    saveGeneration.current++;
     setScreen(loaded.run || loaded.defeat ? "dungeon" : "town");
     setDialog(null);
     inform(`Welcome back, ${loaded.name}. Your journey has been restored.`);
@@ -373,12 +471,34 @@ export default function App() {
     }
   };
   const close = () => setDialog(null);
+  const createRewardCredit = () => {
+    const generation = saveGeneration.current;
+    return (receipt: string) => {
+      if (generation !== saveGeneration.current) return;
+      const next = reduceGame(currentGame.current, {
+        type: "AD_REWARD",
+        receipt,
+        date: rewardDate(),
+      });
+      currentGame.current = next;
+      setGame(next);
+      // Persist the earned callback immediately, while the native ad may still be open.
+      void saveLocalValue(SAVE_KEY, JSON.stringify(next)).catch(() =>
+        setSaveError(true),
+      );
+    };
+  };
   const st = stats(game);
   const o = ORIGINS.find((o) => o.id === game.origin)!;
   return (
     <GameContext.Provider value={{ game, act, go, open: setDialog, screen }}>
       <div
         className={`app ${screen === "dungeon" && (game.run || game.defeat) ? "journey-session" : ""} ${screen === "town" ? "journey-town" : ""} ${["character", "quests", "inventory"].includes(screen) ? "folio-session" : ""}`}
+        style={
+          { "--ad-banner-height": `${adState.bannerHeight}px` } as CSSProperties
+        }
+        data-ad-banner={adState.bannerHeight > 0 ? "active" : "none"}
+        data-ad-fullscreen={adState.fullscreen}
         onPointerDown={(e) => {
           if ((e.target as HTMLElement).closest("button")) clickSound();
         }}
@@ -612,6 +732,7 @@ export default function App() {
           <NewGame
             onClose={close}
             onStart={(name, origin) => {
+              saveGeneration.current++;
               setGame(createGame(name, origin, freshSeed()));
               setScreen("town");
               setDialog(null);
@@ -663,6 +784,17 @@ export default function App() {
               <span>Language</span>
               <strong>English</strong>
             </div>
+            <RemoveAds inform={inform} />
+            {adState.privacyRequired && (
+              <Button
+                kind="secondary"
+                disabled={!online || adState.fullscreen}
+                onClick={() => void ads.privacyChoices()}
+              >
+                <GearSixIcon size={18} />
+                Advertising privacy choices
+              </Button>
+            )}
             <div className="save-settings">
               <h3>Your journey, kept safe</h3>
               <p>
@@ -722,7 +854,7 @@ export default function App() {
             </p>
             <div className="about-details">
               <span>
-                Version<strong>0.2.6 · Playable prototype</strong>
+                Version<strong>0.2.7 · Playable prototype</strong>
               </span>
               <span>
                 World<strong>The Northern Reaches</strong>
@@ -733,8 +865,9 @@ export default function App() {
             </div>
             <p className="tiny muted">
               Inspired by the text adventure and turn-based dungeon crawler
-              genre. Original artwork created with image generation. No account,
-              advertising, or purchases.
+              genre. Original artwork created with image generation. No account.
+              Android offers optional rewarded supplies and a one-time Remove
+              Ads purchase; the journey remains playable offline.
             </p>
             <p className="tiny muted">
               Town ambience: water drops and cavern echoes by Sclolex, adapted
@@ -800,6 +933,11 @@ export default function App() {
               Rest for the night
               <Gold amount={restPrice(game)} />
             </Button>
+            <RewardedSupplies
+              game={game}
+              inform={inform}
+              createCredit={createRewardCredit}
+            />
           </Modal>
         )}
         {dialog === "shrine" && (
@@ -945,7 +1083,7 @@ function MainMenu({
           </button>
         </div>
         <span className="menu-version">
-          v0.2.6 · YOUR STORY IS SAVED LOCALLY
+          v0.2.7 · YOUR STORY IS SAVED LOCALLY
         </span>
       </div>
     </div>

@@ -8,6 +8,13 @@ import {
   SKILLS,
   itemById,
 } from "./data";
+import {
+  validRewardDate,
+  validRewardReceipt,
+  validRewardRecord,
+  rewardSupplyAvailability,
+  type RewardedSupplies,
+} from "./adRewards";
 import type { AttributeId, BiomeId, OriginId, Slot, Choice } from "./data";
 import {
   CACHE_EQUIPMENT_CHANCE,
@@ -106,6 +113,7 @@ export type GameState = {
   resolve: number;
   gold: number;
   potions: number;
+  rewardedSupplies?: RewardedSupplies;
   attributes: Record<AttributeId, number>;
   statPoints: number;
   skillPoints: number;
@@ -170,6 +178,7 @@ export type Action =
   | { type: "EVENT"; choice: number }
   | { type: "COMBAT"; action: string }
   | { type: "DECISION"; id: string; choice: number }
+  | { type: "AD_REWARD"; receipt: string; date: string }
   | { type: "DISMISS_GUIDE" | "ACK_OUTCOME" | "ACK_DEFEAT" }
   | { type: "RETURN" | "REST" | "SHRINE" | "POTION" | "CLEAR_NOTICE" };
 export function createGame(
@@ -192,6 +201,7 @@ export function createGame(
     resolve: 100,
     gold: 120,
     potions: 3,
+    rewardedSupplies: { date: "", claimed: 0, receipts: [] },
     attributes: { might: o.might, will: o.will, agility: o.agility },
     statPoints: 0,
     skillPoints: 2,
@@ -1204,6 +1214,26 @@ export function reduceGame(state: GameState, a: Action): GameState {
         "You returned safely. Rest, improve your gear, and keep your vow.";
       break;
     }
+    case "AD_REWARD": {
+      if (
+        !validRewardDate(a.date) ||
+        !validRewardReceipt(a.receipt) ||
+        rewardSupplyAvailability(s, a.date) !== "available" ||
+        s.rewardedSupplies?.receipts.includes(a.receipt)
+      )
+        break;
+      const previous = s.rewardedSupplies;
+      s.rewardedSupplies = {
+        date: a.date,
+        claimed: (previous?.date === a.date ? previous.claimed : 0) + 1,
+        receipts: [...(previous?.receipts ?? []).slice(-127), a.receipt],
+      };
+      s.potions++;
+      s.notice =
+        "Received 1 healing draught. Your wayfarer's supplies are saved.";
+      log(s, "Wayfarer's supplies", s.notice, "loot");
+      break;
+    }
     case "BUY": {
       if (s.run) break;
       if (a.id === "potion" || a.id === "potion-five") {
@@ -1494,6 +1524,8 @@ export function parseSave(raw: string): GameState | null {
     }
     const legacy = !s.counters;
     s.defeat ??= null;
+    s.rewardedSupplies ??= { date: "", claimed: 0, receipts: [] };
+    if (!validRewardRecord(s.rewardedSupplies)) return null;
     if (
       s.defeat &&
       (!Number.isInteger(s.defeat.lostGold) ||

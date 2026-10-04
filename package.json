@@ -1,6 +1,6 @@
 {
   "name": "ashen-vow",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,15 +10,18 @@
     "test": "tsx --test tests/*.test.ts",
     "build:android-web": "tsc -b && vite build --mode android",
     "android:sync": "npm run build:android-web && cap sync android",
-    "android:apk": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-apk.ps1"
+    "android:apk": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-apk.ps1",
+    "android:aab": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-apk.ps1 -WithBundle"
   },
   "dependencies": {
+    "@capacitor-community/admob": "8.1.0",
     "@capacitor/android": "^8.5.2",
     "@capacitor/app": "^8.1.1",
     "@capacitor/core": "^8.5.2",
     "@capacitor/filesystem": "^8.1.3",
     "@capacitor/preferences": "^8.0.1",
     "@capacitor/share": "^8.0.2",
+    "@capgo/native-purchases": "8.8.1",
     "@fontsource/cinzel": "^5.2.0",
     "@fontsource/cormorant-garamond": "^5.2.0",
     "@fontsource/manrope": "^5.2.0",

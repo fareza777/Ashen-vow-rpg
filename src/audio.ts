@@ -12,10 +12,15 @@ class Soundscape {
   private townRecording: Promise<AudioBuffer | null> | null = null;
   private ambientPending = false;
   private generation = 0;
+  private interrupted = false;
   unlock() {
     try {
       this.ctx ??= new AudioContext();
-      if (this.ctx.state === "suspended" && !document.hidden)
+      if (
+        this.ctx.state === "suspended" &&
+        !document.hidden &&
+        !this.interrupted
+      )
         void this.ctx.resume();
     } catch {
       return;
@@ -86,9 +91,7 @@ class Soundscape {
       });
       return;
     }
-    const water = ["saltreach", "rootsea", "catacombs"].includes(
-      region,
-    );
+    const water = ["saltreach", "rootsea", "catacombs"].includes(region);
     const fire = ["archive", "engine"].includes(region);
     const layers = [
       {
@@ -194,8 +197,12 @@ class Soundscape {
   }
   visibility() {
     if (!this.ctx) return;
-    if (document.hidden) void this.ctx.suspend();
+    if (document.hidden || this.interrupted) void this.ctx.suspend();
     else void this.ctx.resume();
+  }
+  interrupt(interrupted: boolean) {
+    this.interrupted = interrupted;
+    this.visibility();
   }
   stop() {
     ++this.generation;
