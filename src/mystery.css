@@ -99,6 +99,17 @@
 .journey-session .combat-action span {
   font-size: 11px;
 }
+.journey-session .combat-action.potion:not(:disabled) {
+  background: linear-gradient(145deg, #4b2830, #32212b);
+  border-color: #bb8071;
+}
+.journey-session .combat-action.potion:not(:disabled) strong,
+.journey-session .combat-action.potion:not(:disabled) svg {
+  color: #ffddc1;
+}
+.journey-session .combat-action.potion:not(:disabled) span {
+  color: #e4b7a6;
+}
 .journey-session .combat-view.health-critical {
   border-color: #bb6660;
   box-shadow: inset 0 0 28px #992b352b;

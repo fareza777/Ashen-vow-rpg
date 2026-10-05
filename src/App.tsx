@@ -63,6 +63,7 @@ import { ORIGINS } from "./data";
 import type { OriginId } from "./data";
 import { Town } from "./Town";
 import { Dungeon } from "./Dungeon";
+import { completedExpedition } from "./dungeonPresentation";
 import { Quests, Character, Inventory, Shop, Codex } from "./Progression";
 import { Art, Bar, Badge, Button, Modal, OrnamentalDivider, Gold } from "./ui";
 
@@ -265,25 +266,15 @@ export default function App() {
       current = false;
     };
   }, [game, inform]);
-  const hadExpedition = useRef(!!(game.run || game.defeat));
-  const previousRun = useRef(game.run);
+  const previousExpedition = useRef({ run: game.run, defeat: game.defeat });
   useEffect(() => {
-    if (
-      hadExpedition.current &&
-      !game.run &&
-      !game.defeat &&
-      screen === "dungeon"
-    ) {
-      if (previousRun.current)
-        ads.queueExpeditionBreak(
-          `return-${game.day}-${game.seed}`,
-          previousRun.current.rooms,
-        );
+    const completed = completedExpedition(previousExpedition.current, game);
+    if (completed && screen === "dungeon") {
+      ads.queueExpeditionBreak(completed.key, completed.rooms);
       setScreen("town");
       window.scrollTo({ top: 0, behavior: "instant" });
     }
-    hadExpedition.current = !!(game.run || game.defeat);
-    previousRun.current = game.run;
+    previousExpedition.current = { run: game.run, defeat: game.defeat };
   }, [game.run, game.defeat, screen]);
   useEffect(() => {
     if ((game.combat?.enemyId || game.run?.eventId) && window.innerWidth < 768)
@@ -750,7 +741,7 @@ export default function App() {
             <div className="settings-list">
               <Setting
                 label="Nature ambience"
-                text="Quiet water drops and stone echoes in town; wind and water in the wilds. No instrumental music."
+                text="Quiet water drops and stone echoes in town and the catacombs; wind and water in the wilds. No instrumental music."
                 checked={settings.music}
                 onChange={toggleMusic}
               />
@@ -854,7 +845,7 @@ export default function App() {
             </p>
             <div className="about-details">
               <span>
-                Version<strong>0.2.7 · Playable prototype</strong>
+                Version<strong>0.2.8 · Playable prototype</strong>
               </span>
               <span>
                 World<strong>The Northern Reaches</strong>
@@ -1083,7 +1074,7 @@ function MainMenu({
           </button>
         </div>
         <span className="menu-version">
-          v0.2.7 · YOUR STORY IS SAVED LOCALLY
+          v0.2.8 · YOUR STORY IS SAVED LOCALLY
         </span>
       </div>
     </div>
@@ -1249,7 +1240,7 @@ function Tutorial({
     {
       icon: SwordIcon,
       title: "Read the enemy",
-      text: "Every action takes a turn. Read the battle log: it warns before heavy blows and recovery openings. Guard heavy blows; heal or Focus during recovery. Draughts require two other actions before drinking again. Each enemy has its own rhythm.",
+      text: "Every action takes a turn. Read the battle log for heavy blows and recovery openings. Guard heavy blows; use Potion or Focus during recovery. Potion shows your remaining stock, spends one turn and restores HP. Take two other actions before drinking again.",
       tip: "You can retreat from ordinary enemies. Guardians bar your escape.",
     },
     {

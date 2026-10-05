@@ -1,4 +1,4 @@
-# Ashen Vow monetization — 0.2.7
+# Ashen Vow monetization — 0.2.8
 
 The Android build includes real native AdMob SDK integration using Google's public demo IDs, plus Google Play Billing for **Remove Ads — US$4.99 once**. Browser/PWA play remains offline-capable; advertising and purchasing controls explain that they require Android. No purchase has been made or simulated in the shipped game.
 
@@ -7,11 +7,13 @@ The Android build includes real native AdMob SDK integration using Google's publ
 | Format | Placement | Limits |
 | --- | --- | --- |
 | Banner | Top of the town hub, in a reserved 50dp slot | Hidden in menus, dialogs, expeditions, battle, background and offline |
-| Interstitial | Returning safely to town after an expedition | At least 6 explored rooms; every second eligible return; at least 3 minutes between fullscreen ads; skipped if not ready |
+| Interstitial | Returning to town safely, or after acknowledging dungeon death | At least 6 explored rooms; every eligible expedition; at least 3 minutes between fullscreen ads; skipped if not ready |
 | Rewarded | Tavern → Wayfarer's supplies, explicitly chosen | One healing draught per completed ad; 2 claims per UTC day; satchel limit 6 |
 | Remove Ads | Settings | Permanent one-time purchase for every character; all 3 ad formats removed; the same capped daily supplies can be claimed without a video |
 
 Ads never gate quests, combat, equipment, normal rest or saves. No gold, XP or extra recovery is awarded by a video. Closing early gives no reward; an earned callback saves its unique receipt immediately. Duplicate SDK callbacks cannot duplicate the reward. UTC days use the device clock, with backward-date checks; this is an offline game, not a server-managed economy.
+
+The death story stays visible until **Return to Vesper's Rest** is chosen. Its explored-room count is saved with the defeat receipt, including across restarts; only then can an eligible interstitial appear at the town transition. Death receipts from older versions without a room count remain playable and skip that placement. An unavailable ad never waits to appear later during play.
 
 Fullscreen ads and the purchase sheet suspend game audio. Dismissal restores the previous audio settings. New games and save imports do not change purchase ownership.
 
@@ -32,7 +34,7 @@ Before serving live campaigns, replace the app ID and all three units with this 
 
 The product is **`remove_ads`**, a one-time, non-consumable purchase. It is not a subscription. A price cannot be activated by hardcoding it in an APK: Google Play supplies the purchasable product, localized price, and payment sheet.
 
-1. Use the app with package **`com.ashenvow.game`** in Play Console. Upload the signed `AshenVow-0.2.7.aab` to an internal testing track; this task does not publish it to Google Play.
+1. Use the app with package **`com.ashenvow.game`** in Play Console. Upload the signed `AshenVow-0.2.8.aab` to an internal testing track; this task does not publish it to Google Play.
 2. In **Monetize with Play → Products**, create the one-time product with ID **`remove_ads`** and title **Remove Ads**. Suggested description: “An ad-free journey for every character, with daily tavern supplies available without a video.”
 3. Configure a **Buy** purchase option with a **US$4.99** US/base price, select regional availability/prices, and activate the product and purchase option. Do not add a rental option or a subscription.
 4. Add a Google account under **License testing**, opt it into the internal track and install the game through Google Play on a device signed into that account. Use Google's test payment methods.
@@ -61,7 +63,9 @@ The same private update key signs both artifacts. Keep `.android-signing` privat
 
 The controller/reward tests cover idempotent grants, daily/capacity limits, old saves, skipped ads, offline behavior, cooldowns, late callbacks, privacy changes, paid suppression, pending/cancelled purchases, acknowledgement, restore/revocation, price localization, and concurrent taps. Native test source is `android/app/src/androidTest/java/com/ashenvow/game/MonetizationIntegrationTest.java`; it checks plugin registration, bundled assets and real loading of all three Google demo formats. It performs no payment.
 
-Verified on 5 October 2026: **83 TypeScript tests passed**; production web build passed; the **2 native integration tests passed on an Android 16 / API 36 x86_64 emulator**, including live Google demo banner, interstitial and rewarded loading. Settings was checked at 390×844 and 360×640; the tavern and onboarding were checked at 360×640. APK v2 signing and all bundled game assets were verified. The certificate matches earlier releases. No physical phone or real/licensed Play transaction has been tested.
+Version **0.2.8**, verified on 5 October 2026: **91 TypeScript tests passed**; production web, signed APK and signed AAB builds passed. Tests cover every-expedition frequency, the six-room threshold, duplicate returns, fullscreen cooldown, death acknowledgement/reload and saved-room validation. Battle potion controls were checked at **360×640 and 390×844**, including actual healing, stock reduction and recovery turns; the page and controls fit without scrolling. The death screen survived browser reload and returned to town only after acknowledgement, with no browser console errors. APK v2 signing and all **42 bundled assets in each Android artifact** were verified; both certificates match earlier releases.
+
+The unchanged native SDK integration was verified for **0.2.7** on the same date: **2 native integration tests passed on an Android 16 / API 36 x86_64 emulator**, including actual Google demo banner, interstitial and rewarded loading. Those SDK tests were not rerun for this gameplay and placement update. No physical phone or real/licensed Play transaction has been tested.
 
 To run only this app's native tests against an Android emulator/device:
 

@@ -216,7 +216,7 @@ test("live consent refusal prevents SDK initialization and ad loading", async ()
   );
 });
 
-test("interstitials require a real return, two expeditions, and a three-minute interval", async () => {
+test("each expedition of at least six rooms can show one interstitial after the three-minute interval", async () => {
   let now = 0;
   const port = new Port();
   const ads = new AdController(port, () => now);
@@ -224,21 +224,11 @@ test("interstitials require a real return, two expeditions, and a three-minute i
   await ads.start();
   await flush();
   now = 180001;
-  ads.queueExpeditionBreak("short", 2);
-  ads.setPlacement(town);
-  await flush();
-  ads.queueExpeditionBreak("first", 8);
+  ads.queueExpeditionBreak("short", 5);
   ads.setPlacement(town);
   await flush();
   assert.ok(!port.calls.includes("interstitial"));
-  ads.queueExpeditionBreak("first", 8);
-  ads.setPlacement(town);
-  await flush();
-  assert.ok(
-    !port.calls.includes("interstitial"),
-    "the same return cannot count twice",
-  );
-  ads.queueExpeditionBreak("second", 8);
+  ads.queueExpeditionBreak("first", 6);
   ads.setPlacement(town);
   await flush();
   assert.equal(port.calls.filter((c) => c === "interstitial").length, 1);
@@ -249,17 +239,32 @@ test("interstitials require a real return, two expeditions, and a three-minute i
   );
   port.emit("interstitial-close");
   await flush();
+  now += 180001;
+  ads.queueExpeditionBreak("first", 6);
+  ads.setPlacement(town);
+  await flush();
+  assert.equal(
+    port.calls.filter((c) => c === "interstitial").length,
+    1,
+    "the same return cannot count twice",
+  );
+  ads.queueExpeditionBreak("second", 8);
+  ads.setPlacement(town);
+  await flush();
+  assert.equal(port.calls.filter((c) => c === "interstitial").length, 2);
+  port.emit("interstitial-close");
+  await flush();
   ads.queueExpeditionBreak("third", 9);
   ads.setPlacement(town);
   ads.queueExpeditionBreak("fourth", 9);
   ads.setPlacement(town);
   await flush();
-  assert.equal(port.calls.filter((c) => c === "interstitial").length, 1);
+  assert.equal(port.calls.filter((c) => c === "interstitial").length, 2);
   now += 180001;
   ads.queueExpeditionBreak("fifth", 9);
   ads.setPlacement(town);
   await flush();
-  assert.equal(port.calls.filter((c) => c === "interstitial").length, 2);
+  assert.equal(port.calls.filter((c) => c === "interstitial").length, 3);
   port.emit("interstitial-close");
 });
 

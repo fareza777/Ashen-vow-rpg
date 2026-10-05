@@ -101,7 +101,13 @@ Android now includes native AdMob banner, interstitial and rewarded ads using **
 
 Settings includes **Remove Ads — US$4.99 once**, plus **Restore Purchases**, through Google Play Billing. An owned purchase disables every ad format and allows the same daily tavern supplies without a video, including offline. Pending/cancelled payments do not grant ownership; old saves and new characters remain supported. Store-provided local prices replace the US reference price when available.
 
-Download the signed APK and Google Play upload AAB from the [v0.2.7 release](https://github.com/fareza777/Ashen-vow-rpg/releases/tag/v0.2.7). Install the APK over the previous version to keep your journey. The AAB is for Play Console testing/upload, not direct phone installation. **The `remove_ads` product must be activated at US$4.99 in Play Console before store purchases can work.** [Setup, behavior and verification details](docs/MONETIZATION.md).
+Download the signed APK and Google Play upload AAB from the [v0.2.8 release](https://github.com/fareza777/Ashen-vow-rpg/releases/tag/v0.2.8). Install the APK over the previous version to keep your journey. The AAB is for Play Console testing/upload, not direct phone installation. **The `remove_ads` product must be activated at US$4.99 in Play Console before store purchases can work.** [Setup, behavior and verification details](docs/MONETIZATION.md).
+
+## Version 0.2.8: expedition breaks and battle potions
+
+Interstitials can now appear after every expedition with at least six explored rooms, whether returning safely or after choosing Return on the death screen. The three-minute fullscreen interval remains; offline, unavailable and removed ads are skipped. Defeat receipts preserve explored rooms across restarts.
+
+The Unhallowed Catacombs use the same locally bundled stone-water recording as Vesper's Rest, without the previous synthetic water layers. The battle **Potion** button shows stock, healing and unavailable reasons in the action grid. Drinking spends one turn and requires two other actions before another potion; battle log, healing effects and tutorial explain the action.
 
 ## Inspiration
 

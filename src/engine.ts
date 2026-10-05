@@ -137,6 +137,7 @@ export type GameState = {
   defeat?: {
     enemy?: string;
     biome?: BiomeId;
+    rooms?: number;
     lostGold: number;
     turns: number;
     text: string;
@@ -752,6 +753,7 @@ function defeat(s: GameState) {
   s.defeat = {
     enemy,
     biome: s.run?.biome,
+    rooms: s.run?.rooms ?? 0,
     lostGold: loss,
     turns: s.combat?.turn ?? 0,
     text: name
@@ -1532,6 +1534,8 @@ export function parseSave(raw: string): GameState | null {
         s.defeat.lostGold < 0 ||
         !Number.isInteger(s.defeat.turns) ||
         s.defeat.turns < 0 ||
+        (s.defeat.rooms !== undefined &&
+          (!Number.isSafeInteger(s.defeat.rooms) || s.defeat.rooms < 0)) ||
         typeof s.defeat.text !== "string" ||
         s.run ||
         s.combat ||

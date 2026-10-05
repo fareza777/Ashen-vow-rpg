@@ -63,7 +63,7 @@ class Soundscape {
     });
     this.ambient = [];
     if (!ambience) return;
-    if (region === "town") {
+    if (region === "town" || region === "catacombs") {
       this.ambientPending = true;
       this.townRecording ??= fetch("/audio/town-stonewater.mp3")
         .then((response) => {
@@ -78,7 +78,7 @@ class Soundscape {
       void this.townRecording.then((recording) => {
         if (generation !== this.generation) return;
         this.ambientPending = false;
-        if (!recording || !this.enabled || this.region !== "town") return;
+        if (!recording || !this.enabled || this.region !== region) return;
         const source = ctx.createBufferSource();
         const gain = ctx.createGain();
         source.buffer = recording;

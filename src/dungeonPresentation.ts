@@ -1,6 +1,20 @@
 import { canMove, neighbors } from "./engine";
 import type { DungeonNode, GameState } from "./engine";
 
+// A death is a completed expedition only after the player acknowledges its story.
+// Keep its room receipt in the save so resuming that screen still has the count.
+export function completedExpedition(
+  previous: Pick<GameState, "run" | "defeat">,
+  next: Pick<GameState, "run" | "defeat" | "day" | "seed">,
+) {
+  if ((!previous.run && !previous.defeat) || next.run || next.defeat)
+    return null;
+  return {
+    key: `return-${next.day}-${next.seed}`,
+    rooms: previous.run?.rooms ?? previous.defeat?.rooms ?? 0,
+  };
+}
+
 // Prefer a sentence boundary; every word remains available, including long lore.
 export function narrativePages(text: string, target = 46): string[] {
   const words = text.trim().split(/\s+/).filter(Boolean);

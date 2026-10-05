@@ -174,6 +174,36 @@ test("town ambience plays one recorded nature loop without a synthetic noise bed
   );
 });
 
+test("the first dungeon shares the recorded town ambience without a synthetic water layer", async (t) => {
+  const env = environment(t);
+  env.engine.gesture(true, false, "catacombs");
+  assert.equal(env.active().length, 0, "stay quiet while the recording loads");
+  env.finish();
+  await setImmediate();
+  assert.equal(env.active().length, 1);
+  assert.equal(env.active()[0].buffer, env.recording);
+  assert.equal(env.active()[0].loop, true);
+  env.engine.configure(true, false, "town");
+  await setImmediate();
+  assert.equal(env.active().length, 1, "returning must not stack sound loops");
+  assert.equal(env.active()[0].buffer, env.recording);
+  env.engine.configure(true, false, "catacombs");
+  await setImmediate();
+  assert.equal(env.active().length, 1);
+  env.engine.configure(false, false, "catacombs");
+  assert.equal(env.active().length, 0);
+});
+
+test("moving from town into the first dungeon during loading starts only the current recording", async (t) => {
+  const env = environment(t);
+  env.engine.gesture(true, false, "town");
+  env.engine.configure(true, false, "catacombs");
+  env.finish();
+  await setImmediate();
+  assert.equal(env.active().length, 1);
+  assert.equal(env.active()[0].buffer, env.recording);
+});
+
 test("muting while nature audio loads prevents delayed playback", async (t) => {
   const env = environment(t);
   env.engine.gesture(true, false, "town");

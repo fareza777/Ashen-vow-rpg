@@ -55,6 +55,7 @@ function CombatView({
     (k) => game.skills.includes(k.id) && !k.passive,
   );
   const e = ENEMIES.find((e) => e.id === c.enemyId)!;
+  const recovery = draughtRecovery(c);
   const enraged = !!e.boss && c.hp < c.maxHp * 0.5;
   const effectCount =
     Number(enraged) + Number(c.ward > 0) + Number(c.poison > 0);
@@ -70,10 +71,14 @@ function CombatView({
     { id: "focus", name: "Focus", hint: "+8 energy", icon: EyeIcon },
     {
       id: "potion",
-      name: "Draught",
-      hint: draughtRecovery(c)
-        ? `Ready in ${draughtRecovery(c)} action${draughtRecovery(c) === 1 ? "" : "s"}`
-        : `+${draughtHealing(game)} HP · ×${game.potions}`,
+      name: `Potion ×${game.potions}`,
+      hint: !game.potions
+        ? "No potions left"
+        : recovery
+          ? `Ready in ${recovery} turn${recovery === 1 ? "" : "s"}`
+          : game.hp >= stats(game).maxHp
+            ? "HP full"
+            : `Drink · +${draughtHealing(game)} HP`,
       icon: FlaskIcon,
     },
     {
@@ -146,7 +151,7 @@ function CombatView({
             ))}
             <p className="battle-recap">
               {c.turn > 0 && game.battleFx?.enemy === c.enemyId
-                ? `${SKILLS.find((k) => k.id === game.battleFx!.action)?.name ?? ({ attack: "Strike", power: "Heavy strike", guard: "Guard", focus: "Focus", potion: "Draught" } as Record<string, string>)[game.battleFx.action]} · ${game.battleFx.damage ? `Dealt ${game.battleFx.damage} · ` : ""}${game.battleFx.healed ? `Healed ${game.battleFx.healed} · ` : ""}Took ${game.battleFx.incoming} damage`
+                ? `${SKILLS.find((k) => k.id === game.battleFx!.action)?.name ?? ({ attack: "Strike", power: "Heavy strike", guard: "Guard", focus: "Focus", potion: "Potion" } as Record<string, string>)[game.battleFx.action]} · ${game.battleFx.damage ? `Dealt ${game.battleFx.damage} · ` : ""}${game.battleFx.healed ? `Healed ${game.battleFx.healed} · ` : ""}Took ${game.battleFx.incoming} damage`
                 : null}
             </p>
           </div>
@@ -166,14 +171,14 @@ function CombatView({
           </button>
           {choices.map((a) => (
             <button
-              className={`combat-action ${a.id === "attack" ? "main" : ""}`}
+              className={`combat-action ${a.id === "attack" ? "main" : a.id === "potion" ? "potion" : ""}`}
               key={a.id}
               disabled={
                 !!cue ||
                 (a.id === "power" && game.energy < 4) ||
                 (a.id === "potion" &&
                   (!game.potions ||
-                    !!draughtRecovery(c) ||
+                    !!recovery ||
                     game.hp >= stats(game).maxHp)) ||
                 (a.id === "flee" && !!e.boss)
               }

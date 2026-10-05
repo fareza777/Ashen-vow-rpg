@@ -75,8 +75,6 @@ export class AdController {
   private bannerWork: Promise<void> = Promise.resolve();
   private loads: Partial<Record<"reward" | "interstitial", Promise<void>>> = {};
   private session: Session | null = null;
-  private returns = 0;
-  private returnsAtLastAd = 0;
   private seenReturns = new Set<string>();
   private pendingBreak: { expires: number } | null = null;
   private lastFullscreen: number;
@@ -360,9 +358,7 @@ export class AdController {
     this.seenReturns.add(key);
     if (this.seenReturns.size > 64)
       this.seenReturns.delete(this.seenReturns.values().next().value!);
-    this.returns++;
     if (
-      this.returns - this.returnsAtLastAd >= 2 &&
       this.now() - this.lastFullscreen >= AD_INTERVAL_MS &&
       this.canFullscreen() &&
       this.state.interstitialReady
@@ -378,7 +374,6 @@ export class AdController {
     };
     this.session = session;
     this.lastFullscreen = this.now();
-    this.returnsAtLastAd = this.returns;
     this.update({ fullscreen: true, interstitialReady: false });
     await this.syncBanner();
     try {
