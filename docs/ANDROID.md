@@ -1,8 +1,8 @@
 # Ashen Vow Android APK
 
-The installable release is `releases/AshenVow-0.2.8.apk`. It uses the same package and signing key as earlier releases, with version code 10, so it can be installed as an update. Keep the existing app installed to retain its local save.
+The installable release is `releases/AshenVow-0.2.9.apk`. It uses the same package and signing key as earlier releases, with version code 11, so it can be installed as an update. Keep the existing app installed to retain its local save.
 
-Download it from the [v0.2.8 GitHub release](https://github.com/fareza777/Ashen-vow-rpg/releases/tag/v0.2.8). APK/AAB binaries are distributed through Releases and are excluded from Git. The AAB is a signed Google Play upload bundle and cannot be installed directly like an APK.
+Download it from the [v0.2.9 GitHub release](https://github.com/fareza777/Ashen-vow-rpg/releases/tag/v0.2.9). APK/AAB binaries are distributed through Releases and are excluded from Git. The AAB is a signed Google Play upload bundle and cannot be installed directly like an APK.
 
 ## Install on a phone
 
@@ -45,7 +45,7 @@ The built release is signed for direct installation. Publishing on Google Play i
 
 ## Ads and one-time purchase
 
-Version 0.2.8 uses Google demo AdMob IDs for town banners, expedition-break interstitials and optional tavern rewarded ads. Interstitials are eligible after each expedition with at least six explored rooms, including after acknowledging death, with a three-minute fullscreen cooldown. The first dungeon now shares the town recording, and battle controls explicitly label **Potion** with remaining stock and recovery turns. Core gameplay, art, sound and saves work without an ad connection. Settings offers **Remove Ads — US$4.99 once** and **Restore Purchases** through Google Play Billing. Ownership is separate from character saves and disables all ad formats. Paid players can claim the same limited daily supplies without a video.
+Version 0.2.9 uses Google demo AdMob IDs for town banners, expedition-break interstitials and optional tavern rewarded ads. Interstitials are eligible after each expedition with at least six explored rooms, including after acknowledging death, with a three-minute fullscreen cooldown. The first dungeon shares the town recording, and battle controls label **Draught** with remaining stock and recovery turns, consistent with item names, narration and the tutorial. Core gameplay, art, sound and saves work without an ad connection. Settings offers **Remove Ads — US$4.99 once** and **Restore Purchases** through Google Play Billing. Ownership is separate from character saves and disables all ad formats. Paid players can claim the same limited daily supplies without a video.
 
 The Google Play product **`remove_ads`** must be created and activated with a US$4.99 base price for package `com.ashenvow.game`. Google Play supplies the final regional price. Until configured, the game reports store unavailability and remains playable. [AdMob and Play Console setup](MONETIZATION.md).
 

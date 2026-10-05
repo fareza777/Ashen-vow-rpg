@@ -71,9 +71,9 @@ function CombatView({
     { id: "focus", name: "Focus", hint: "+8 energy", icon: EyeIcon },
     {
       id: "potion",
-      name: `Potion ×${game.potions}`,
+      name: `Draught ×${game.potions}`,
       hint: !game.potions
-        ? "No potions left"
+        ? "No draughts left"
         : recovery
           ? `Ready in ${recovery} turn${recovery === 1 ? "" : "s"}`
           : game.hp >= stats(game).maxHp
@@ -151,7 +151,7 @@ function CombatView({
             ))}
             <p className="battle-recap">
               {c.turn > 0 && game.battleFx?.enemy === c.enemyId
-                ? `${SKILLS.find((k) => k.id === game.battleFx!.action)?.name ?? ({ attack: "Strike", power: "Heavy strike", guard: "Guard", focus: "Focus", potion: "Potion" } as Record<string, string>)[game.battleFx.action]} · ${game.battleFx.damage ? `Dealt ${game.battleFx.damage} · ` : ""}${game.battleFx.healed ? `Healed ${game.battleFx.healed} · ` : ""}Took ${game.battleFx.incoming} damage`
+                ? `${SKILLS.find((k) => k.id === game.battleFx!.action)?.name ?? ({ attack: "Strike", power: "Heavy strike", guard: "Guard", focus: "Focus", potion: "Draught" } as Record<string, string>)[game.battleFx.action]} · ${game.battleFx.damage ? `Dealt ${game.battleFx.damage} · ` : ""}${game.battleFx.healed ? `Healed ${game.battleFx.healed} · ` : ""}Took ${game.battleFx.incoming} damage`
                 : null}
             </p>
           </div>

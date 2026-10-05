@@ -845,7 +845,7 @@ export default function App() {
             </p>
             <div className="about-details">
               <span>
-                Version<strong>0.2.8 · Playable prototype</strong>
+                Version<strong>0.2.9 · Playable prototype</strong>
               </span>
               <span>
                 World<strong>The Northern Reaches</strong>
@@ -1074,7 +1074,7 @@ function MainMenu({
           </button>
         </div>
         <span className="menu-version">
-          v0.2.8 · YOUR STORY IS SAVED LOCALLY
+          v0.2.9 · YOUR STORY IS SAVED LOCALLY
         </span>
       </div>
     </div>
@@ -1240,7 +1240,7 @@ function Tutorial({
     {
       icon: SwordIcon,
       title: "Read the enemy",
-      text: "Every action takes a turn. Read the battle log for heavy blows and recovery openings. Guard heavy blows; use Potion or Focus during recovery. Potion shows your remaining stock, spends one turn and restores HP. Take two other actions before drinking again.",
+      text: "Every action takes a turn. Read the battle log for heavy blows and recovery openings. Guard heavy blows; use Draught or Focus during recovery. Draught shows your remaining stock, spends one turn and restores HP. Take two other actions before drinking again.",
       tip: "You can retreat from ordinary enemies. Guardians bar your escape.",
     },
     {

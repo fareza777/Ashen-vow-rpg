@@ -1,4 +1,4 @@
-# Ashen Vow monetization — 0.2.8
+# Ashen Vow monetization — 0.2.9
 
 The Android build includes real native AdMob SDK integration using Google's public demo IDs, plus Google Play Billing for **Remove Ads — US$4.99 once**. Browser/PWA play remains offline-capable; advertising and purchasing controls explain that they require Android. No purchase has been made or simulated in the shipped game.
 
@@ -34,7 +34,7 @@ Before serving live campaigns, replace the app ID and all three units with this 
 
 The product is **`remove_ads`**, a one-time, non-consumable purchase. It is not a subscription. A price cannot be activated by hardcoding it in an APK: Google Play supplies the purchasable product, localized price, and payment sheet.
 
-1. Use the app with package **`com.ashenvow.game`** in Play Console. Upload the signed `AshenVow-0.2.8.aab` to an internal testing track; this task does not publish it to Google Play.
+1. Use the app with package **`com.ashenvow.game`** in Play Console. Upload the signed `AshenVow-0.2.9.aab` to an internal testing track; this task does not publish it to Google Play.
 2. In **Monetize with Play → Products**, create the one-time product with ID **`remove_ads`** and title **Remove Ads**. Suggested description: “An ad-free journey for every character, with daily tavern supplies available without a video.”
 3. Configure a **Buy** purchase option with a **US$4.99** US/base price, select regional availability/prices, and activate the product and purchase option. Do not add a rental option or a subscription.
 4. Add a Google account under **License testing**, opt it into the internal track and install the game through Google Play on a device signed into that account. Use Google's test payment methods.
@@ -49,6 +49,8 @@ The UI uses the price and eligible base offer returned by Google Play. Until the
 Confirmed ownership is cached separately in native Preferences and loaded before advertising starts. Query/network errors retain previously confirmed ownership for offline play; a successful query reporting no ownership clears it. Game JSON exports contain no entitlement or payment token. This prototype does not include server-side purchase verification or real-time developer notifications; refund detection occurs through successful Play ownership refreshes. See [plugin API](https://github.com/Cap-go/capacitor-native-purchases) and [Google purchase processing](https://developer.android.com/google/play/billing/integrate).
 
 ## Build and verification
+
+Version **0.2.9** restores **Draught** in the battle action, healing recap, empty-stock message and tutorial. On 5 October 2026, **91 TypeScript tests passed**, including the rendered Draught control, healing, stock, recovery and unavailable states. Production web, signed APK and signed AAB builds passed. All **42 bundled game assets in each artifact** and the existing signing certificate were verified. This text update did not require another native SDK or browser-layout test run.
 
 ```powershell
 npm test
