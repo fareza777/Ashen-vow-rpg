@@ -1,4 +1,4 @@
-package com.ashenvow.game;
+package com.ashenvow.rpg;
 
 import com.getcapacitor.BridgeActivity;
 import android.os.Bundle;

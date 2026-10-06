@@ -1,4 +1,4 @@
-package com.ashenvow.game;
+package com.ashenvow.rpg;
 
 import static org.junit.Assert.*;
 

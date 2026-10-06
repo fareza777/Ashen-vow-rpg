@@ -34,7 +34,7 @@ Before serving live campaigns, replace the app ID and all three units with this 
 
 The product is **`remove_ads`**, a one-time, non-consumable purchase. It is not a subscription. A price cannot be activated by hardcoding it in an APK: Google Play supplies the purchasable product, localized price, and payment sheet.
 
-1. Use the app with package **`com.ashenvow.game`** in Play Console. Upload the signed `AshenVow-0.2.9.aab` to the closed testing track.
+1. Use the app with package **`com.ashenvow.rpg`** in Play Console. Upload the signed `AshenVow-0.2.9.aab` to the closed testing track.
 2. In **Monetize with Play → Products**, create the one-time product with ID **`remove_ads`** and title **Remove Ads**. Suggested description: “An ad-free journey for every character, with daily tavern supplies available without a video.”
 3. Configure a **Buy** purchase option with a **US$4.99** US/base price, select regional availability/prices, and activate the product and purchase option. Do not add a rental option or a subscription.
 4. Add a Google account under **License testing**, opt it into the internal track and install the game through Google Play on a device signed into that account. Use Google's test payment methods.

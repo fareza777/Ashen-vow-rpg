@@ -19,6 +19,6 @@ with zipfile.ZipFile(apk) as archive:
 sha=hashlib.sha256(apk.read_bytes()).hexdigest()
 sidecar=(apk.parent/(apk.name+'.sha256')).read_text().split()[0]
 assert sidecar==sha,'Checksum mismatch'
-info=dict(app='Ashen Vow: The Hollow Below',packageId='com.ashenvow.game',version=version,versionCode=version_code,file=apk.name,bytes=apk.stat().st_size,sha256=sha,minSdk=24,targetSdk=36,orientation='portrait',signature='APK Signature Scheme v2 verified',bundledAssetsVerified=len(files),remoteServerRequired=False,physicalDeviceTested=False)
+info=dict(app='Ashen Vow RPG: The Hollow Below',packageId='com.ashenvow.rpg',version=version,versionCode=version_code,file=apk.name,bytes=apk.stat().st_size,sha256=sha,minSdk=24,targetSdk=36,orientation='portrait',signature='APK Signature Scheme v2 verified',bundledAssetsVerified=len(files),remoteServerRequired=False,physicalDeviceTested=False)
 (apk.parent/'APK-INFO.json').write_text(json.dumps(info,indent=2)+'\n',encoding='utf-8')
 print(json.dumps(info,indent=2))

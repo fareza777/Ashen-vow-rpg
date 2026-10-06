@@ -39,7 +39,7 @@ The script builds the Android web assets separately from the PWA, synchronizes t
 
 ## Preserve the update key
 
-Keep a private backup of **`.android-signing`**, including both the keystore and `release.properties`. These files are ignored by Git and contain the signing credentials. Future APK updates must use the same key and application ID `com.ashenvow.game`; increase `versionCode` in `android/app/build.gradle` for a new release. Do not publish the signing folder or include it with the APK.
+Keep a private backup of **`.android-signing`**, including both the keystore and `release.properties`. These files are ignored by Git and contain the signing credentials. Future APK updates must use the same key and application ID `com.ashenvow.rpg`; increase `versionCode` in `android/app/build.gradle` for a new release. Do not publish the signing folder or include it with the APK.
 
 The built release is signed for direct installation. Publishing on Google Play is a separate step and has not been performed.
 
@@ -47,6 +47,6 @@ The built release is signed for direct installation. Publishing on Google Play i
 
 Version 0.2.9 uses Google demo AdMob IDs for town banners, expedition-break interstitials and optional tavern rewarded ads. Interstitials are eligible after each expedition with at least six explored rooms, including after acknowledging death, with a three-minute fullscreen cooldown. The first dungeon shares the town recording, and battle controls label **Draught** with remaining stock and recovery turns, consistent with item names, narration and the tutorial. Core gameplay, art, sound and saves work without an ad connection. Settings offers **Remove Ads — US$4.99 once** and **Restore Purchases** through Google Play Billing. Ownership is separate from character saves and disables all ad formats. Paid players can claim the same limited daily supplies without a video.
 
-The Google Play product **`remove_ads`** must be created and activated with a US$4.99 base price for package `com.ashenvow.game`. Google Play supplies the final regional price. Until configured, the game reports store unavailability and remains playable. [AdMob and Play Console setup](MONETIZATION.md).
+The Google Play product **`remove_ads`** must be created and activated with a US$4.99 base price for package `com.ashenvow.rpg`. Google Play supplies the final regional price. Until configured, the game reports store unavailability and remains playable. [AdMob and Play Console setup](MONETIZATION.md).
 
 Build both APK and the signed AAB for internal Google Play testing with `npm run android:aab`. This does not upload or publish to Google Play.

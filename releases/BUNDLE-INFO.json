@@ -1,14 +1,16 @@
 {
-  "app": "Ashen Vow: The Hollow Below",
-  "packageId": "com.ashenvow.game",
+  "app": "Ashen Vow RPG: The Hollow Below",
+  "packageId": "com.ashenvow.rpg",
   "version": "0.2.9",
   "versionCode": 11,
   "file": "AshenVow-0.2.9.aab",
   "format": "Android App Bundle",
-  "bytes": 47696572,
-  "sha256": "a27a45237218064413245dd96fc31a18923e4a8d76d4f3e3667330ac8783e1c4",
+  "bytes": 47694769,
+  "sha256": "00ee7e29387d29e8cf8f73cb1ca42087c8ab48a69bd8ee715a837c040bbaa063",
   "signature": "JAR signature verified; certificate matches APK and previous releases",
   "certificateSha256": "de7bbced2460f69a1562a29ccef6e427a3e26226ca662c6bde8aef291cea6efb",
   "bundledAssetsVerified": 42,
-  "publishedToGooglePlay": false
+  "publishedToGooglePlay": false,
+  "privacyPolicy": "https://fareza777.github.io/Ashen-vow-rpg/privacy-policy.html",
+  "appAdsTxt": "https://fareza777.github.io/Ashen-vow-rpg/app-ads.txt"
 }

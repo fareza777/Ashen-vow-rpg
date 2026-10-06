@@ -7,10 +7,10 @@ if (signingPropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.ashenvow.game"
+    namespace = "com.ashenvow.rpg"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.ashenvow.game"
+        applicationId "com.ashenvow.rpg"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 11
