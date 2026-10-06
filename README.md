@@ -1,4 +1,4 @@
-# Ashen Vow: The Hollow Below
+# Ashen Vow RPG: The Hollow Below
 
 An original English dark fantasy RPG about the cost of a perfect morning. All human and humanoid faces are concealed by masks, opaque veils, dark hoods, or enclosed helmets.
 
@@ -58,7 +58,7 @@ Android saves/settings are mirrored to native Preferences and restored before re
 
 Defeat costs 15% of gold. An illustrated summary shows the losses and recovery; acknowledge it to return to town. The summary persists through reload. Experience, equipment, and learned disciplines remain. Below 25 resolve, damage decreases. Story choices and quest rewards cannot be repeatedly farmed. Keep a private backup of `.android-signing` for future updates, and never share that folder.
 
-The game is not published on Google Play. Rate explains this and never redirects to another game's listing.
+The Google Play listing is being prepared under **Ashen Vow RPG**. Rate opens the app's own listing when a public listing is available.
 
 ## Build and verify
 

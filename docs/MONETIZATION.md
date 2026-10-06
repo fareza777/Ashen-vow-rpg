@@ -34,13 +34,17 @@ Before serving live campaigns, replace the app ID and all three units with this 
 
 The product is **`remove_ads`**, a one-time, non-consumable purchase. It is not a subscription. A price cannot be activated by hardcoding it in an APK: Google Play supplies the purchasable product, localized price, and payment sheet.
 
-1. Use the app with package **`com.ashenvow.game`** in Play Console. Upload the signed `AshenVow-0.2.9.aab` to an internal testing track; this task does not publish it to Google Play.
+1. Use the app with package **`com.ashenvow.game`** in Play Console. Upload the signed `AshenVow-0.2.9.aab` to the closed testing track.
 2. In **Monetize with Play → Products**, create the one-time product with ID **`remove_ads`** and title **Remove Ads**. Suggested description: “An ad-free journey for every character, with daily tavern supplies available without a video.”
 3. Configure a **Buy** purchase option with a **US$4.99** US/base price, select regional availability/prices, and activate the product and purchase option. Do not add a rental option or a subscription.
 4. Add a Google account under **License testing**, opt it into the internal track and install the game through Google Play on a device signed into that account. Use Google's test payment methods.
 5. Check approval, cancellation, decline, pending approval/decline, Restore Purchases, reinstall, new character, offline restart, and refund/revocation. A pending payment must not remove ads. An acknowledged owned product must not be purchased twice.
 
 The UI uses the price and eligible base offer returned by Google Play. Until the product is available, Settings shows the US$4.99 reference price and a retry action; it never pretends to charge or unlock a purchase. For account/store configuration and test payment behavior, see [creating products](https://support.google.com/googleplay/android-developer/answer/1153481) and [Google's billing testing guide](https://developer.android.com/google/play/billing/test).
+
+## Public privacy and app-ads files
+
+The public privacy policy is hosted at **https://fareza777.github.io/Ashen-vow-rpg/privacy-policy.html**. The AdMob seller declaration is at **https://fareza777.github.io/Ashen-vow-rpg/app-ads.txt** and uses publisher ID `pub-6279186647593327`.
 
 ## Purchase handling and offline ownership
 

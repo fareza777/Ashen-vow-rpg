@@ -2,7 +2,7 @@ import type { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
   appId: "com.ashenvow.game",
-  appName: "Ashen Vow",
+  appName: "Ashen Vow RPG",
   webDir: "dist-android",
   backgroundColor: "#121113",
   android: {
