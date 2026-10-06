@@ -1,0 +1,225 @@
+{
+  "project": "Ashen Vow: The Hollow Below",
+  "language": "English",
+  "gameVersion": "0.2.9",
+  "generatedAt": "2026-10-06T16:24:07.136Z",
+  "imageGeneration": "Built-in Imagegen; exact prompts in ART-PROMPTS.json",
+  "videoSoftware": "Remotion 4.0.533",
+  "audio": {
+    "instrumentalMusic": false,
+    "voiceover": false,
+    "content": "Original bell, metal, paper and air effects with CC0 quiet water ambience"
+  },
+  "verification": {
+    "screenshotCount": 8,
+    "imageDimensionsAndChannels": "Passed",
+    "iconSizeLimit": "Passed",
+    "fullVideoAndAudioDecode": "Passed using FFmpeg with explicit rawvideo and pcm_s16le output codecs",
+    "editableProjectLintAndTypecheck": "Passed",
+    "sourceCaptures": [
+      {
+        "path": "trailer/public/captures/01-combat.jpg",
+        "width": 450,
+        "height": 800
+      },
+      {
+        "path": "trailer/public/captures/02-event.jpg",
+        "width": 450,
+        "height": 800
+      },
+      {
+        "path": "trailer/public/captures/03-map.jpg",
+        "width": 450,
+        "height": 800
+      },
+      {
+        "path": "trailer/public/captures/04-story.jpg",
+        "width": 450,
+        "height": 800
+      },
+      {
+        "path": "trailer/public/captures/05-skills.jpg",
+        "width": 450,
+        "height": 800
+      },
+      {
+        "path": "trailer/public/captures/06-equipment.jpg",
+        "width": 450,
+        "height": 800
+      },
+      {
+        "path": "trailer/public/captures/07-quests.jpg",
+        "width": 450,
+        "height": 800
+      },
+      {
+        "path": "trailer/public/captures/08-town.jpg",
+        "width": 450,
+        "height": 800
+      }
+    ],
+    "notes": "Game interface was captured at a normal 450 × 800 portrait viewport, then composed into 1080 × 1920 artwork. All captures use real game UI."
+  },
+  "files": [
+    {
+      "path": "play-store/app-icon-512.png",
+      "bytes": 587208,
+      "sha256": "bedc56f3f3134b70615dddefea1458883dcad98bb35a4dd669f25a3c8e82373d",
+      "format": "PNG",
+      "width": 512,
+      "height": 512,
+      "channels": 4,
+      "bitDepth": 8,
+      "colorType": "RGBA"
+    },
+    {
+      "path": "play-store/feature-graphic-1024x500.png",
+      "bytes": 879811,
+      "sha256": "570cca50ada8fdb0f719a7c42ecb680c520c84f93c3e41686b843ec47a6fd29f",
+      "format": "PNG",
+      "width": 1024,
+      "height": 500,
+      "channels": 3,
+      "bitDepth": 8,
+      "colorType": "RGB"
+    },
+    {
+      "path": "play-store/screenshots/01.png",
+      "bytes": 1836996,
+      "sha256": "555d6a09ba89682171eb017f78b2dd3d4dfead1f6cfe5b3a54f4d667a74667b9",
+      "format": "PNG",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bitDepth": 8,
+      "colorType": "RGB"
+    },
+    {
+      "path": "play-store/screenshots/02.png",
+      "bytes": 1120849,
+      "sha256": "bdb5b31c75ded6a2bbc4b0ed0f77532dffbed753b786920cec3eacb3fed78aea",
+      "format": "PNG",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bitDepth": 8,
+      "colorType": "RGB"
+    },
+    {
+      "path": "play-store/screenshots/03.png",
+      "bytes": 1395444,
+      "sha256": "3a91c95a85a724b462d6c948247a8aeabee7892e263b70115a89cf6d6f1a3435",
+      "format": "PNG",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bitDepth": 8,
+      "colorType": "RGB"
+    },
+    {
+      "path": "play-store/screenshots/04.png",
+      "bytes": 1319533,
+      "sha256": "611227996aadb70377b81f36c86bcd07c09f86a7580a98debf0dfa8ffe7c576f",
+      "format": "PNG",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bitDepth": 8,
+      "colorType": "RGB"
+    },
+    {
+      "path": "play-store/screenshots/05.png",
+      "bytes": 1227965,
+      "sha256": "5e20694c5ff94ef955b504ff8074560cf67c3c9626e9651ac9128126a88d3f4c",
+      "format": "PNG",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bitDepth": 8,
+      "colorType": "RGB"
+    },
+    {
+      "path": "play-store/screenshots/06.png",
+      "bytes": 1237660,
+      "sha256": "511c136f8863be9f677689a880647bc7244e97cf30a5aa5ec5d2d61f5c74d8f4",
+      "format": "PNG",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bitDepth": 8,
+      "colorType": "RGB"
+    },
+    {
+      "path": "play-store/screenshots/07.png",
+      "bytes": 1131928,
+      "sha256": "e9c4157e239e556a1aec1d6880a126c41274270f3302fd9e5b29f4ac112dc79e",
+      "format": "PNG",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bitDepth": 8,
+      "colorType": "RGB"
+    },
+    {
+      "path": "play-store/screenshots/08.png",
+      "bytes": 1706269,
+      "sha256": "94b898286d3c424734f5877605377aa4a4593f5f7a5c2f4a42c4108aa2f3f844",
+      "format": "PNG",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bitDepth": 8,
+      "colorType": "RGB"
+    },
+    {
+      "path": "play-store/screenshots-contact-sheet.png",
+      "bytes": 918407,
+      "sha256": "3015bc2df1223522109917c46a212fc8e9cd96ccfc14b92e05899e20016d1456",
+      "format": "PNG",
+      "width": 1160,
+      "height": 1008,
+      "channels": 4,
+      "bitDepth": 8,
+      "colorType": "RGBA"
+    },
+    {
+      "path": "trailer/out/trailer-poster.png",
+      "bytes": 3088053,
+      "sha256": "976b60fdbeecb4eb9cc1674874e48d2139d2218c1514e3d90e71d0c5fa2a61c8",
+      "format": "PNG",
+      "width": 1080,
+      "height": 1920,
+      "channels": 3,
+      "bitDepth": 8,
+      "colorType": "RGB"
+    },
+    {
+      "path": "trailer/out/trailer-storyboard.png",
+      "bytes": 984118,
+      "sha256": "3fe1741b0b72742c4daf54500ad0d87c948b694b7175f8b0a7a196563886a132",
+      "format": "PNG",
+      "width": 1176,
+      "height": 816,
+      "channels": 4,
+      "bitDepth": 8,
+      "colorType": "RGBA"
+    },
+    {
+      "path": "trailer/out/AshenVow-StoreTrailer-1080x1920.mp4",
+      "bytes": 20724366,
+      "sha256": "e1fe6a8c02b1324ce972ee2835f502d2336246245ff9beb2be1fa1bb09b6d82a",
+      "format": "MP4",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "frames": 900,
+      "videoDurationSeconds": 30,
+      "containerDurationSeconds": 30.016,
+      "videoCodec": "h264",
+      "pixelFormat": "yuvj420p",
+      "audioCodec": "aac",
+      "audioSampleRate": 48000,
+      "audioChannels": 2
+    }
+  ]
+}

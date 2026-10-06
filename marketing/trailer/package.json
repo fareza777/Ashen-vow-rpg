@@ -1,0 +1,38 @@
+{
+  "name": "ashen-vow-store-trailer",
+  "version": "1.0.0",
+  "description": "Editable English Ashen Vow store assets and a 30-second portrait trailer",
+  "repository": {},
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@remotion/bundler": "4.0.533",
+    "@remotion/cli": "4.0.533",
+    "@remotion/fonts": "4.0.533",
+    "@remotion/media": "4.0.533",
+    "@remotion/renderer": "4.0.533",
+    "@remotion/transitions": "4.0.533",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.533"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.533",
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "eslint": "9.39.5",
+    "prettier": "3.8.1",
+    "sharp": "^0.35.5",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio --no-open",
+    "prepare:assets": "node scripts/prepare-assets.mjs",
+    "render:stills": "node scripts/render-assets.mjs --stills-only",
+    "render:video": "node scripts/render-assets.mjs --video-only",
+    "render:all": "node scripts/render-assets.mjs",
+    "build": "remotion bundle",
+    "upgrade": "remotion upgrade",
+    "lint": "eslint src && tsc"
+  }
+}

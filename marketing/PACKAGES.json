@@ -1,0 +1,16 @@
+[
+  {
+    "file": "AshenVow-PlayStore-Upload.zip",
+    "bytes": 38125422,
+    "entries": 21,
+    "sha256": "2666c3ee5fad0287445672d5431828bf7c76f0858f3e001418842ddd3de565a8",
+    "integrity": "Passed"
+  },
+  {
+    "file": "AshenVow-Remotion-Editable.zip",
+    "bytes": 34046464,
+    "entries": 77,
+    "sha256": "4d2929a12f5ed5d79ebfeaadced2e90b21e780669f5c47e4acda77f1bba81ff1",
+    "integrity": "Passed"
+  }
+]
